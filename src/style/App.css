@@ -1,0 +1,117 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* FOR NAVBAR */
+.nav {
+  background-color: #f6f6f6;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  height: 100px;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 3px 0 #3366cc;
+  z-index: 1;
+}
+
+.navLogo {
+  margin-left: 30px;
+}
+
+.nav_list {
+  list-style-type: none;
+}
+
+.nav_list * {
+  display: inline;
+}
+
+li a {
+  color: #584E96; /* blue color */
+  font-weight: 500;
+  font-size: 22px;
+  text-decoration: none;
+  text-align: center;
+  padding: 30px 30px; /* distance btw nav bar options */
+}
+
+li a:hover {
+  text-decoration: underline;
+}
+
+/* NAVBAR LOGO */
+.navLogo {
+  margin-left: 30px;
+}
+
+.logo {
+  min-width: 80px;
+  min-height: 80px;
+  max-width: 80px;
+  max-height: 80px;
+}
+
+/* PAGES CONTENT */
+.centerDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 130px;
+}
+
+.content {
+  margin: 25px 50px 75px;
+  padding: 50px;
+  background-color: rgb(242, 242, 242, .97);
+  width: 75%;
+  box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+.subtopic {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: -5px;
+  color: 141414;
+  /* font-family: 'Pristina'; */
+  font-weight: bold;
+}
+
+.text {
+  color: #141414;
+}
