@@ -10,7 +10,9 @@ import Materials from './pages/Materials.js';
 import Planets from './pages/Planets.js';
 import NatlResources from './pages/NatlResources.js';
 import ProducedMaterials from './pages/ProducedMaterials.js';
+import Adding from './pages/AddData';
 import Navbar from './components/NavBar.js';
+import AddForm from './components/AddingForm.js';
 import React, { useState } from 'react';
 
 
@@ -40,6 +42,8 @@ function App() {
           <Route exact path="/planets" component={Planets} />
           <Route exact path="/natl" component={NatlResources} />
           <Route exact path="/produced" component={ProducedMaterials} />
+          <Route exact path="/addform" component={AddForm} />
+          <Route exact path="/adddb" component={Adding} />
         </Switch>
       </Router>
     </div>
