@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 const Planets = () => {
   const [viewOpt, setViewOpt] = useState("all");
-  const [specific, setspecific] = useState("specific");
+  const [specific, setspecific] = useState("which");
   // console.log(viewOpt)
 
   const redirToEdit = () => {
@@ -10,7 +10,37 @@ const Planets = () => {
   }
 
   const specificData = () => {
-    if (viewOpt != "all" && specific != "which") {
+    if (viewOpt == "nations" && specific != "which") {
+      return <div>
+            <div className='indivItem'>
+              <div className='row'>
+                <p className='resItem resHeader'>Material</p>
+                <p className='resItem'>adkvjnd</p>
+                <p className='resItem'>avdkjnl</p>
+              </div>
+              
+              <div className='row'>
+                <p className='resItem resHeader'>Value (units)</p>
+                <p className='resItem'>3</p>
+                <p className='resItem'>2</p>
+              </div>
+              
+              <div className='row'>
+                <p className='resItem resHeader'>Planet</p>
+                <p className='resItem'>1</p>
+                <p className='resItem'>3</p>
+              </div>
+
+              <div className='row'>
+                <p className='resHeader'>Edit</p>
+                {/* need to associate an ID to the indiv edits */}
+                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
+                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
+              </div>
+            </div>
+          </div>
+    }
+    else if (viewOpt == "materials" && specific != "which") {
       return <div>
             <div className='indivItem'>
               <div className='row'>
@@ -45,22 +75,34 @@ const Planets = () => {
   const viewingOpt = () => {
     var e = document.getElementById("viewOpt");
     
-    if (viewOpt == 'specific') {
+    if (viewOpt == 'nations' ) {
       // prompt user for nation with another dropdown
       return <div>
                 <div className="dropdownList">
-                  <label>Pick a nation</label>
                   <select className='dropdown' onChange={e => setspecific(e.target.value)} id ="viewOpt">
                   <option className='view'  defaultValue={'which'} value={"which"}>Pick a nation</option>
-                    <option className='view' value={"all"}>Canada</option>
-                    <option className='view'  value={"specific"}>MX</option>
+                    <option className='view' value={"can"}>Canada</option>
+                    <option className='view'  value={"mx"}>MX</option>
                   </select>
                 </div>
                 
                 {specificData()}
              </div>
     }
-  
+  else if (viewOpt == 'materials' ) {
+    // prompt user for nation with another dropdown
+    return <div>
+              <div className="dropdownList">
+                <select className='dropdown' onChange={e => setspecific(e.target.value)} id ="viewOpt">
+                <option className='view'  defaultValue={'which'} value={"which"}>Pick a planet</option>
+                  <option className='view' value={"can"}>Venus</option>
+                  <option className='view'  value={"mx"}>Mars</option>
+                </select>
+              </div>
+              
+              {specificData()}
+           </div>
+  }
   else {
     // return all ships and nations 
     return <div>

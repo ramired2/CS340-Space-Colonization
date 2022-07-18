@@ -7,8 +7,6 @@ const Homepage = ({
     <div className="content">
       <h1 className="subtopic text">Space Colonization</h1>
       <div>
-        <button className='clickView'>Colonized Planets</button>
-        <button className='clickView'>Uncolonized Planets</button>
       </div>
       
     </div>
