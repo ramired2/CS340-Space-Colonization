@@ -43,12 +43,14 @@
   display: flex;
   position: fixed;
   align-items: center;
-  height: 100px;
+  height: auto;
+  overflow-wrap: break-word;
   top: 0;
   left: 0;
   right: 0;
   box-shadow: 0 0 3px 0 #3366cc;
   z-index: 1;
+  
 }
 
 .navLogo {
@@ -63,13 +65,19 @@
   display: inline;
 }
 
+.longWord {
+  display: inline-block;
+  /* overflow-wrap: normal; */
+}
+
 li a {
-  color: #584E96; /* blue color */
+  color: #584E96; /* purple color */
   font-weight: 500;
   font-size: 22px;
   text-decoration: none;
   text-align: center;
-  padding: 30px 30px; /* distance btw nav bar options */
+  /* padding: 30px 30px; //distance btw nav bar options */
+  margin: 30px;
 }
 
 li a:hover {
@@ -96,10 +104,12 @@ li a:hover {
 }
 
 .content {
-  margin: 25px 50px 75px;
+  margin: 25px 50px 75px 50px;
   padding: 50px;
-  background-color: rgb(242, 242, 242, .97);
-  width: 75%;
+  background-color: #f2f2f2f7;
+  position: relative;
+  /* left: 50px;
+  right: 50px; */
   box-shadow: 10px 10px 5px #aaaaaa;
 }
 
@@ -114,4 +124,85 @@ li a:hover {
 
 .text {
   color: #141414;
+}
+
+/* for buttons */
+.btns {
+  background-color: #584E96;
+  color: #f6f6f6;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btns :hover {
+  cursor: pointer;
+}
+
+.ptr :hover {
+  cursor: pointer;
+}
+
+.btnsInline {
+  display: block;
+}
+
+.clickView {
+  margin: 30px;
+}
+
+/* for dropdown lists */
+.dropdown {
+  margin: 35px 20px 20px 0px;
+  color: #f6f6f6;
+  background-color: #584E96;
+  font-size: 15px;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+/* highlighting text color */
+::selection {
+  background: #61dafb;
+}
+::-moz-selection {
+  background: #61dafb;
+}
+
+/* formatting for each row heading*/
+.resItem {
+  margin: 5px 80px 10px 80px;
+}
+
+/* formatting for text header */
+.resHeader {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.indivItem {
+  display: inline-flex;
+  margin: 5px;
+  overflow-wrap: break-word;
+}
+
+/* formatting results from dropdown div */
+.showingRes {
+  border: #61dafb 1px solid;
+  border-radius: 5px;
+  
+}
+
+/* edit forms formatting */
+.formContent {
+  margin-top: 150px;
+}
+
+.formItem {
+  margin: 10px;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+}
+
+.formContainer {
+  margin-top: 15px;
 }

@@ -13,6 +13,11 @@ import ProducedMaterials from './pages/ProducedMaterials.js';
 import Adding from './pages/AddData';
 import Navbar from './components/NavBar.js';
 import AddForm from './components/AddingForm.js';
+import EditNations from './components/EditNations.js';
+import EditShips from './components/EditShips.js';
+import EditStarTypes from './components/EditStarTypes.js';
+import EditSystems from './components/EditSystem.js';
+import EditMaterials from './components/EditMaterials.js';
 import React, { useState } from 'react';
 
 
@@ -44,6 +49,11 @@ function App() {
           <Route exact path="/produced" component={ProducedMaterials} />
           <Route exact path="/addform" component={AddForm} />
           <Route exact path="/adddb" component={Adding} />
+          <Route exact path="/nationsedit" component={EditNations} />
+          <Route exact path="/shipsedit" component={EditShips} />
+          <Route exact path="/startypesedit" component={EditStarTypes} />
+          <Route exact path="/starsystemsedit" component={EditSystems} />
+          <Route exact path="/materialsedit" component={EditMaterials} />
         </Switch>
       </Router>
     </div>
