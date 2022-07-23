@@ -18,6 +18,8 @@ import EditShips from './components/EditShips.js';
 import EditStarTypes from './components/EditStarTypes.js';
 import EditSystems from './components/EditSystem.js';
 import EditMaterials from './components/EditMaterials.js';
+import EditNatlResources from './components/EditNatlResources.js';
+import EditProduced from './components/EditProduced.js';
 import React, { useState } from 'react';
 
 
@@ -54,6 +56,8 @@ function App() {
           <Route exact path="/startypesedit" component={EditStarTypes} />
           <Route exact path="/starsystemsedit" component={EditSystems} />
           <Route exact path="/materialsedit" component={EditMaterials} />
+          <Route exact path="/natledit" component={EditNatlResources} />
+          <Route exact path="/prodedit" component={EditProduced} />
         </Switch>
       </Router>
     </div>

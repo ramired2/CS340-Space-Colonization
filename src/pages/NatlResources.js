@@ -146,7 +146,7 @@ const NatlResources = () => {
   return(
   <div className="centerDiv">
     <div className="content">
-      <h1 className="subtopic text">Browsing Planets</h1>
+      <h1 className="subtopic text">Browsing Natural NatlResources</h1>
 
       {/* <button onClick={() => {viewingOpt();}}>see which opt chosen</button> */}
 
