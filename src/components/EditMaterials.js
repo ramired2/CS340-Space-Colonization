@@ -44,7 +44,7 @@ const EditMaterials = (props) => {
         <label className='subtopic text'>Edit a Material</label>
         <div className='formContainer'>
           <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="System Name" name="Ship Name" value={name} onChange={(e) => setName(e.target.value)}/></div>
-          <div className='dropdownList'>
+          <div className='dropdownList editAddbtn'>
                 <select id = "planetID" className='dropdown'>
                     <option className='indivItem formItem' value={planetID} onChange={(e) => setplanetID(e.target.value)}>Saturn</option>
                     <option className='indivItem formItem' value={planetID} onChange={(e) => setplanetID(e.target.value)}>Earth</option>

@@ -9,33 +9,8 @@ const Ships = () => {
     window.location.href="http://localhost:3000/shipsedit"
   }
 
-  const viewingOpt = () => {
-    var e = document.getElementById("viewOpt");
-
-    console.log(viewOpt)
-    
-    // API call based on options chosen
-
-    // if wants to view a specific nations ships
-      if (viewOpt == 'specific') {
-        // prompt user for nation with another dropdown
-        return <div>
-                  <div className="dropdownList">
-                    <label>Pick a nation</label>
-                    <select className='dropdown' onChange={e => setNation(e.target.value)} id ="viewOpt">
-                    <option className='view'  defaultValue={'which'} value={"which"}>Pick a nation</option>
-                      <option className='view' value={"all"}>Canada</option>
-                      <option className='view'  value={"specific"}>MX</option>
-                    </select>
-                  </div>
-
-                  {/* once a nation is chosen send appropriate data */}
-               </div>
-      }
-    
-    else {
-      // return all ships and nations 
-      return <div>
+  const genFormat = () => {
+    return <div>
                 <div className='indivItem'>
                   <div className='row'>
                     <p className='resItem resHeader'>Ship Name</p>
@@ -56,19 +31,43 @@ const Ships = () => {
                   </div>
 
                   <div className='row'>
-                    <p className='resHeader'>Edit</p>
+                    <p className='resItem resHeader'>Edit</p>
                     {/* need to associate an ID to the indiv edits */}
                     <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
                     <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
                   </div>
                 </div>
               </div>
-    }
-    
-    
-    
-    
+  }
 
+  const viewingOpt = () => {
+    var e = document.getElementById("viewOpt");
+
+    console.log(viewOpt)
+    
+    // API call based on options chosen
+
+    // if wants to view a specific nations ships
+      if (viewOpt == 'specific') {
+        // prompt user for nation with another dropdown
+        return <div>
+                  <div className="dropdownList">
+                    <select className='dropdown' onChange={e => setNation(e.target.value)} id ="viewOpt">
+                    <option className='view'  defaultValue={'which'} value={"which"}>Pick a nation</option>
+                      <option className='view' value={"all"}>Canada</option>
+                      <option className='view'  value={"specific"}>MX</option>
+                    </select>
+                  </div>
+
+                  {/* once a nation is chosen API call then output appropriate data */}
+                  {nation != "which"? genFormat(): null}
+               </div>
+      }
+    
+    else {
+      // return all ships and nations 
+      return genFormat()
+    }
   }
 
   return(

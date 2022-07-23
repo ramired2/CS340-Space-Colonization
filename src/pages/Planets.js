@@ -9,66 +9,49 @@ const Planets = () => {
     window.location.href="http://localhost:3000/planetsedit"
   }
 
+  const genFormat = () => {
+    return <div>
+            <div className='indivItem'>
+              <div className='row'>
+                <p className='resItem resHeader'>Planet name</p>
+                <p className='resItem'>adkvjnd</p>
+                <p className='resItem'>avdkjnl</p>
+              </div>
+              
+              <div className='row'>
+                <p className='resItem resHeader'>Nation</p>
+                <p className='resItem'>3</p>
+                <p className='resItem'>2</p>
+              </div>
+              
+              <div className='row'>
+                <p className='resItem resHeader'>Star system</p>
+                <p className='resItem'>1</p>
+                <p className='resItem'>3</p>
+              </div>
+
+              <div className='row'>
+                <p className='resItem resHeader'>Colonized</p>
+                <p className='resItem'>yes</p>
+                <p className='resItem'>no</p>
+              </div>
+
+              <div className='row'>
+                <p className='resItem resHeader'>Edit</p>
+                {/* need to associate an ID to the indiv edits */}
+                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
+                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
+              </div>
+            </div>
+          </div>
+  }
+
   const specificData = () => {
     if (viewOpt == "nations" && specific != "which") {
-      return <div>
-            <div className='indivItem'>
-              <div className='row'>
-                <p className='resItem resHeader'>Material</p>
-                <p className='resItem'>adkvjnd</p>
-                <p className='resItem'>avdkjnl</p>
-              </div>
-              
-              <div className='row'>
-                <p className='resItem resHeader'>Value (units)</p>
-                <p className='resItem'>3</p>
-                <p className='resItem'>2</p>
-              </div>
-              
-              <div className='row'>
-                <p className='resItem resHeader'>Planet</p>
-                <p className='resItem'>1</p>
-                <p className='resItem'>3</p>
-              </div>
-
-              <div className='row'>
-                <p className='resHeader'>Edit</p>
-                {/* need to associate an ID to the indiv edits */}
-                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
-                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
-              </div>
-            </div>
-          </div>
+      return genFormat()
     }
     else if (viewOpt == "materials" && specific != "which") {
-      return <div>
-            <div className='indivItem'>
-              <div className='row'>
-                <p className='resItem resHeader'>Material</p>
-                <p className='resItem'>adkvjnd</p>
-                <p className='resItem'>avdkjnl</p>
-              </div>
-              
-              <div className='row'>
-                <p className='resItem resHeader'>Value (units)</p>
-                <p className='resItem'>3</p>
-                <p className='resItem'>2</p>
-              </div>
-              
-              <div className='row'>
-                <p className='resItem resHeader'>Planet</p>
-                <p className='resItem'>1</p>
-                <p className='resItem'>3</p>
-              </div>
-
-              <div className='row'>
-                <p className='resHeader'>Edit</p>
-                {/* need to associate an ID to the indiv edits */}
-                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
-                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
-              </div>
-            </div>
-          </div>
+      return genFormat()
     }
   }
 
@@ -105,40 +88,7 @@ const Planets = () => {
   }
   else {
     // return all ships and nations 
-    return <div>
-            <div className='indivItem'>
-              <div className='row'>
-                <p className='resItem resHeader'>Planet name</p>
-                <p className='resItem'>adkvjnd</p>
-                <p className='resItem'>avdkjnl</p>
-              </div>
-              
-              <div className='row'>
-                <p className='resItem resHeader'>Nation</p>
-                <p className='resItem'>3</p>
-                <p className='resItem'>2</p>
-              </div>
-              
-              <div className='row'>
-                <p className='resItem resHeader'>Star system</p>
-                <p className='resItem'>1</p>
-                <p className='resItem'>3</p>
-              </div>
-
-              <div className='row'>
-                <p className='resItem resHeader'>Colonized</p>
-                <p className='resItem'>yes</p>
-                <p className='resItem'>no</p>
-              </div>
-
-              <div className='row'>
-                <p className='resHeader'>Edit</p>
-                {/* need to associate an ID to the indiv edits */}
-                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
-                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
-              </div>
-            </div>
-          </div>
+    return genFormat()
   }
 
   }
@@ -153,8 +103,9 @@ const Planets = () => {
       <div className="dropdownList">
         <select className='dropdown' onChange={e => setViewOpt(e.target.value)} id ="viewOpt">
           <option className='view'  defaultValue={'all'} value={"all"}>View all planets</option>
-          <option className='view'  value={"nations"}>View planets from a specific nation</option>
-          <option className='view'  value={"materials"}>View all materials from a planet</option>
+          <option className='view'  value={"nations"}>Uncolonized Planets</option>
+          <option className='view'  value={"colonized"}>Planets from a specific nation</option>
+          <option className='view'  value={"materials"}>All materials from a planet</option>
         </select>
       </div>
 

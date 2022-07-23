@@ -42,7 +42,7 @@ const EditNations = (props) => {
       <form id="target" action={link} encType="multipart/form-data" onSubmit={createEmpty}>
         <label className='subtopic text'>Edit a Ship</label>
         <div className='formContainer'>
-          <div className='dropdownList'>
+          <div className='dropdownList editAddbtn'>
                 <select id = "ownerID" className='dropdown'>
                     <option className='indivItem formItem' value={nationID} onChange={(e) => setNationID(e.target.value)}>Canada</option>
                     <option className='indivItem formItem' value={nationID} onChange={(e) => setNationID(e.target.value)}>MX</option>

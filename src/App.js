@@ -10,14 +10,25 @@ import Materials from './pages/Materials.js';
 import Planets from './pages/Planets.js';
 import NatlResources from './pages/NatlResources.js';
 import ProducedMaterials from './pages/ProducedMaterials.js';
-import Adding from './pages/AddData';
 import Navbar from './components/NavBar.js';
-import AddForm from './components/AddingForm.js';
+
+// adding pages
+import AddNations from './components/AddNations.js';
+import AddShips from './components/AddShips.js';
+import AddStarTypes from './components/AddStarTypes.js';
+import AddStarSystems from './components/AddStarSystems.js';
+import AddMaterials from './components/AddMaterials.js';
+import AddPlanets from './components/AddPlanets.js';
+import AddNatlResources from './components/AddNatlResources.js';
+import AddProduced from './components/AddProd.js';
+
+// edit pages
 import EditNations from './components/EditNations.js';
 import EditShips from './components/EditShips.js';
 import EditStarTypes from './components/EditStarTypes.js';
 import EditSystems from './components/EditSystem.js';
 import EditMaterials from './components/EditMaterials.js';
+import EditPlanets from './components/EditPlanets.js';
 import EditNatlResources from './components/EditNatlResources.js';
 import EditProduced from './components/EditProduced.js';
 import React, { useState } from 'react';
@@ -49,13 +60,24 @@ function App() {
           <Route exact path="/planets" component={Planets} />
           <Route exact path="/natl" component={NatlResources} />
           <Route exact path="/produced" component={ProducedMaterials} />
-          <Route exact path="/addform" component={AddForm} />
-          <Route exact path="/adddb" component={Adding} />
+
+          {/* adding pages */}
+          <Route exact path="/nationsadd" component={AddNations} />
+          <Route exact path="/shipsadd" component={AddShips} />
+          <Route exact path="/startypesadd" component={AddStarTypes} />
+          <Route exact path="/starsystemsadd" component={AddStarSystems} />
+          <Route exact path="/materialsadd" component={AddMaterials} />
+          <Route exact path="/planetsadd" component={AddPlanets} />
+          <Route exact path="/natladd" component={AddNatlResources} />
+          <Route exact path="/prodadd" component={AddProduced} />
+
+          {/* edit pages */}
           <Route exact path="/nationsedit" component={EditNations} />
           <Route exact path="/shipsedit" component={EditShips} />
           <Route exact path="/startypesedit" component={EditStarTypes} />
           <Route exact path="/starsystemsedit" component={EditSystems} />
           <Route exact path="/materialsedit" component={EditMaterials} />
+          <Route exact path="/planetsedit" component={EditPlanets} />
           <Route exact path="/natledit" component={EditNatlResources} />
           <Route exact path="/prodedit" component={EditProduced} />
         </Switch>

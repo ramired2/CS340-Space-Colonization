@@ -84,7 +84,7 @@ const Materials = () => {
               </div>
 
               <div className='row'>
-                <p className='resHeader'>Edit</p>
+                <p className='resItem resHeader'>Edit</p>
                 {/* need to associate an ID to the indiv edits */}
                 <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
                 <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>

@@ -44,7 +44,7 @@ const EditSystems = (props) => {
       <form id="target" action={link} encType="multipart/form-data" onSubmit={createEmpty}>
         <label className='subtopic text'>Edit a Star System</label>
         <div className='formContainer'>
-          <div className='dropdownList'>
+          <div className='dropdownList editAddbtn'>
                 <select id = "ownerID" className='dropdown'>
                     <option className='indivItem formItem' value={starID} onChange={(e) => setstarID(e.target.value)}>Red Dwarf</option>
                     <option className='indivItem formItem' value={starID} onChange={(e) => setstarID(e.target.value)}>White Dwarf</option>

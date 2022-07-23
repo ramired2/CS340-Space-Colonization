@@ -144,6 +144,7 @@ li a:hover {
 
 .btnsInline {
   display: block;
+  text-align: center;
 }
 
 .clickView {
@@ -158,6 +159,11 @@ li a:hover {
   font-size: 15px;
   padding: 7px;
   border-radius: 5px;
+}
+
+/* dropdown options in center */
+.dropdownList {
+  text-align: center;
 }
 
 /* highlighting text color */
@@ -185,6 +191,11 @@ li a:hover {
   overflow-wrap: break-word;
 }
 
+/* display res table in grid form */
+.row {
+  display: inline-grid;
+}
+
 /* formatting results from dropdown div */
 .showingRes {
   border: #61dafb 1px solid;
@@ -202,6 +213,16 @@ li a:hover {
   border-radius: 5px;
   padding: 5px 10px 5px 10px;
 }
+
+.editAddbtn {
+  margin-left: 10px;
+  text-align: start;
+}
+
+/* center the input boxes */
+/* .centerIt {
+  text-align: center;
+} */
 
 .formContainer {
   margin-top: 15px;
