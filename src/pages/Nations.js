@@ -71,6 +71,8 @@ const Nations = () => {
   <div className="centerDiv">
     <div className="content">
       <h1 className="subtopic text">Nations Browsing</h1>
+
+      <p className="description text">Browse though the UN member nations participating in the colonization project.</p>
     
       <div className="dropdownList">
         <select className='dropdown' onChange={e => setViewOpt(e.target.value)} id ="viewOpt">

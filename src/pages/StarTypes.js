@@ -37,6 +37,8 @@ const StarTypes  = () => {
     <div className="content">
       <h1 className="subtopic text">Browsing Star Types</h1>
 
+      <p className="description text">Browse through star types known to exsist in the galaxy.</p>
+
       <div className="dropdownList">
         <select className='dropdown' value ={"all"} id ="viewOpt">
           <option className='view' defaultValue={'all'} value={"all"}>View all star types</option>

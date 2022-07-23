@@ -94,7 +94,9 @@ const ProducedMaterials = () => {
     <div className="content">
       <h1 className="subtopic text">Browsing Produced Materials</h1>
 
-      {/* <button onClick={() => {viewingOpt();}}>see which opt chosen</button> */}
+      <p className="description text">Browse through resources that have been 
+        produced by exsisting colonies. These resources have been successfully 
+        expiled and stockpiled and are ready for export.</p>
 
       <div className="dropdownList">
         <select className='dropdown' onChange={e => setViewOpt(e.target.value)} id ="viewOpt">

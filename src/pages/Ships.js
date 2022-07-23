@@ -75,7 +75,7 @@ const Ships = () => {
     <div className="content">
       <h1 className="subtopic text">Browsing Ships</h1>
 
-      {/* <button onClick={() => {viewingOpt();}}>see which opt chosen</button> */}
+      <p className="description text">Browse through spaceships owned by UN member nations.</p>
 
       <div className="dropdownList">
         <select className='dropdown' onChange={e => setViewOpt(e.target.value)} id ="viewOpt">

@@ -72,20 +72,6 @@ const Planets = () => {
                 {specificData()}
              </div>
     }
-  else if (viewOpt == 'materials' ) {
-    // prompt user for nation with another dropdown
-    return <div>
-              <div className="dropdownList">
-                <select className='dropdown' onChange={e => setspecific(e.target.value)} id ="viewOpt">
-                <option className='view'  defaultValue={'which'} value={"which"}>Pick a planet</option>
-                  <option className='view' value={"can"}>Venus</option>
-                  <option className='view'  value={"mx"}>Mars</option>
-                </select>
-              </div>
-              
-              {specificData()}
-           </div>
-  }
   else {
     // return all ships and nations 
     return genFormat()
@@ -98,14 +84,13 @@ const Planets = () => {
     <div className="content">
       <h1 className="subtopic text">Browsing Planets</h1>
 
-      {/* <button onClick={() => {viewingOpt();}}>see which opt chosen</button> */}
+      <p className="description text">Browse through planets discovered by the UN Colonization Agency.</p>
 
       <div className="dropdownList">
         <select className='dropdown' onChange={e => setViewOpt(e.target.value)} id ="viewOpt">
           <option className='view'  defaultValue={'all'} value={"all"}>View all planets</option>
           <option className='view'  value={"nations"}>Uncolonized Planets</option>
           <option className='view'  value={"colonized"}>Planets from a specific nation</option>
-          <option className='view'  value={"materials"}>All materials from a planet</option>
         </select>
       </div>
 

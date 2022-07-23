@@ -92,6 +92,10 @@ const NatlResources = () => {
     <div className="content">
       <h1 className="subtopic text">Browsing Natural Resources</h1>
 
+      <p className="description text">Browse through natural resource deposits 
+        discovered by the UN Colonization Agency and view its specific information. 
+        This data can be used to plan member states future colonization goals.</p>
+
       <div className="dropdownList">
         <select className='dropdown' onChange={e => setViewOpt(e.target.value)} id ="viewOpt">
           <option className='view'  defaultValue={'all'} value={"all"}>View all natural resources</option>

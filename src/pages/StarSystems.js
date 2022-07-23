@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 const StarSystems = () => {
   const [viewOpt, setViewOpt] = useState("all");
-  const [system, setSystem] = useState("which");
+  const [distance, setdistance] = useState(null);
   // console.log(viewOpt)
 
   const redirToEdit = () => {
@@ -64,15 +64,11 @@ const StarSystems = () => {
         // prompt user for nation with another dropdown
         return <div>
                   <div className="dropdownList">
-                    <select className='dropdown' onChange={e => setSystem(e.target.value)} id ="viewOpt">
-                    <option className='view'  defaultValue={'which'} value={"which"}>Pick a star system</option>
-                      <option className='view' value={"all"}>Canada</option>
-                      <option className='view'  value={"specific"}>MX</option>
-                    </select>
+                  <div><input className='indivItem formItem' type="number" min = "0" placeholder="Distance (ly)" value={distance} onChange={(e) => setdistance(e.target.value)}/>(ly)</div>
                   </div>
 
                   {/* once a nation is chosen send appropriate data */}
-                  {system != "which"? genFormat(): null}
+                  {distance != null? genFormat(): null}
                </div>
       }
     
@@ -87,10 +83,13 @@ const StarSystems = () => {
     <div className="content">
       <h1 className="subtopic text">Browsing Star Systems</h1>
 
+      <p className="description text">Browse through star systems known to the UN Colonization Agency.</p>
+
+
       <div className="dropdownList">
         <select className='dropdown' onChange={e => setViewOpt(e.target.value)} id ="viewOpt">
           <option className='view'  defaultValue={'all'} value={"all"}>View all star systems</option>
-          <option className='view'  value={"specific"}>View number colonized planets by star systems</option>
+          <option className='view'  value={"specific"}>Minimum distance from Sol</option>
         </select>
       </div>
 
