@@ -11,35 +11,48 @@ const Nations = () => {
     window.location.href="http://localhost:3000/nationsedit"
   }
 
-  const genFormat = () => {
-    return <div>
-            <div className='indivItem'>
-              <div className='row'>
-                <p className='resItem resHeader'>Nation Name</p>
-                <p className='resItem'>Canada</p>
-                <p className='resItem'>MX</p>
-              </div>
-              
-              <div className='row'>
-                <p className='resItem resHeader'>Ships Owned</p>
-                <p className='resItem'>3</p>
-                <p className='resItem'>2</p>
-              </div>
-              
-              <div className='row'>
-                <p className='resItem resHeader'>Planets Colonized</p>
-                <p className='resItem'>1</p>
-                <p className='resItem'>3</p>
-              </div>
+  const deleteData = (id) => {
+    // API call
+    console.log("wants to delete id: ", id)
+  }
 
-              <div className='row'>
-                <p className='resItem resHeader'>Edit</p>
-                {/* need to associate an ID to the indiv edits */}
-                <button className='btns resItem' onClick={() => {redirToEdit()}}>edit</button>
-                <button className='btns resItem' onClick={() => {redirToEdit()}}>edit</button>
-              </div>
-            </div>
-          </div>
+  const redirToAdd = () => {
+    window.location.href="http://localhost:3000/nationsadd"
+    
+  }
+
+  const genFormat = () => {
+    return <table className='resTable'>
+            <thead>
+              <tr>
+                <td className='resItem resHeader'>Nation Name</td>
+                <td className='resItem resHeader'>Ships Owned</td>
+                <td className='resItem resHeader'>Planets Colonized</td>
+                <td className='resItem resHeader'>Edit</td>
+                <td className='resItem resHeader'>Delete</td>
+              </tr>
+            </thead>
+
+            {/* would map out data here */}
+            <tbody>
+              <tr>
+                <td className='resItem'>Canada</td>
+                <td className='resItem'>5</td>
+                <td className='resItem'>2</td>
+                <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td className='resItem'>Mx</td>
+                <td className='resItem'>3</td>
+                <td className='resItem'>1</td>
+                <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+              </tr>
+            </tbody>
+          </table>
   }
 
   const viewingOpt = () => {
@@ -88,6 +101,7 @@ const Nations = () => {
           <option className='view' value={"asc"}>Ascending</option>
           <option className='view' value={"desc"}>Descending</option>
         </select>
+        <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
       </div>
 
       <div className='showingRes'>

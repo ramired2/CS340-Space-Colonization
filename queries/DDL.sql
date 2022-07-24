@@ -68,8 +68,8 @@ CREATE TABLE Planets (
 
 CREATE TABLE ProducedMaterials (
     prodMaterialsID INT AUTO_INCREMENT NOT NULL,
-    materialID INT,
-    planetID INT,
+    materialID INT NOT NULL,
+    planetID INT NOT NULL,
     prodQuantity INT DEFAULT 0,
     PRIMARY KEY (prodMaterialsID),
     FOREIGN KEY (materialID) REFERENCES Materials(materialID)  ON DELETE CASCADE ON UPDATE CASCADE,
@@ -78,8 +78,8 @@ CREATE TABLE ProducedMaterials (
 
 CREATE TABLE NaturalResources (
     natlResourcesID INT AUTO_INCREMENT NOT NULL,
-    materialID INT,
-    planetID INT,
+    materialID INT NOT NULL,
+    planetID INT NOT NULL,
     natlQuantity INT DEFAULT 0,
     PRIMARY KEY (natlResourcesID),
     FOREIGN KEY (materialID) REFERENCES Materials(materialID)  ON DELETE CASCADE ON UPDATE CASCADE,

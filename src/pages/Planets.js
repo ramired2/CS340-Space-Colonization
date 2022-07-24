@@ -9,41 +9,51 @@ const Planets = () => {
     window.location.href="http://localhost:3000/planetsedit"
   }
 
+  const deleteData = (id) => {
+    // API call
+    console.log("wants to delete id: ", id)
+  }
+
+  const redirToAdd = () => {
+    window.location.href="http://localhost:3000/planetsadd"
+    
+  }
+
   const genFormat = () => {
-    return <div>
-            <div className='indivItem'>
-              <div className='row'>
-                <p className='resItem resHeader'>Planet name</p>
-                <p className='resItem'>adkvjnd</p>
-                <p className='resItem'>avdkjnl</p>
-              </div>
-              
-              <div className='row'>
-                <p className='resItem resHeader'>Nation</p>
-                <p className='resItem'>3</p>
-                <p className='resItem'>2</p>
-              </div>
-              
-              <div className='row'>
-                <p className='resItem resHeader'>Star system</p>
-                <p className='resItem'>1</p>
-                <p className='resItem'>3</p>
-              </div>
+    return <table className='resTable'>
+              <thead>
+                <tr>
+                  <td className='resItem resHeader'>Planet Name</td>
+                  <td className='resItem resHeader'>Nation</td>
+                  <td className='resItem resHeader'>Star System</td>
+                  <td className='resItem resHeader'>Colonized</td>
+                  <td className='resItem resHeader'>Edit</td>
+                  <td className='resItem resHeader'>Delete</td>
+                </tr>
+              </thead>
 
-              <div className='row'>
-                <p className='resItem resHeader'>Colonized</p>
-                <p className='resItem'>yes</p>
-                <p className='resItem'>no</p>
-              </div>
-
-              <div className='row'>
-                <p className='resItem resHeader'>Edit</p>
-                {/* need to associate an ID to the indiv edits */}
-                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
-                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
-              </div>
-            </div>
-          </div>
+              {/* would map out data here */}
+              <tbody>
+                <tr>
+                  <td className='resItem'>Venus</td>
+                  <td className='resItem'>MX</td>
+                  <td className='resItem'>Ravy</td>
+                  <td className='resItem'>Yes</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td className='resItem'>Mars</td>
+                  <td className='resItem'>Canada</td>
+                  <td className='resItem'>Sron</td>
+                  <td className='resItem'>Yes</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+          </table>
   }
 
   const specificData = () => {
@@ -56,7 +66,6 @@ const Planets = () => {
   }
 
   const viewingOpt = () => {
-    var e = document.getElementById("viewOpt");
     
     if (viewOpt == 'nations' ) {
       // prompt user for nation with another dropdown
@@ -92,6 +101,7 @@ const Planets = () => {
           <option className='view'  value={"nations"}>Uncolonized Planets</option>
           <option className='view'  value={"colonized"}>Planets from a specific nation</option>
         </select>
+        <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
       </div>
 
       <div className='showingRes'>

@@ -13,7 +13,7 @@ function Navbar(props) {
                   <li id="nav_item" className="active"><a href="/">Home</a></li>
                   <li id="nav_item"><a href="/nations">Nations</a></li>
                   <li id="nav_item"><a href="/ships">Ships</a></li>
-                  <li id="nav_item"><a href="/startypes">Star Types</a></li>
+                  <li id="nav_item" className='longWord'><a href="/startypes">Star Types</a></li>
                   <li id="nav_item" className='longWord'><a href="/starsystems">Star Systems</a></li>
                   <li id="nav_item"><a href="/materials">Materials</a></li>
                   <li id="nav_item"><a href="/planets">Planets</a></li>

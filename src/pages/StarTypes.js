@@ -8,23 +8,42 @@ const StarTypes  = () => {
     window.location.href="http://localhost:3000/startypesedit"
   }
 
-  const genFormat = () => {
-    return <div>
-                <div className='indivItem'>
-                  <div className='row'>
-                    <p className='resItem resHeader'>Star Type</p>
-                    <p className='resItem'>White Dwarf</p>
-                    <p className='resItem'>Red Drawf</p>
-                  </div>
+  const deleteData = (id) => {
+    // API call
+    console.log("wants to delete id: ", id)
+  }
 
-                  <div className='row'>
-                    <p className='resItem resHeader'>Edit</p>
-                    {/* need to associate an ID to the indiv edits */}
-                    <button className='btns resItem' onClick={() => {redirToEdit()}}>edit</button>
-                    <button className='btns resItem' onClick={() => {redirToEdit()}}>edit</button>
-                  </div>
-                </div>
-              </div>
+  const redirToAdd = () => {
+    window.location.href="http://localhost:3000/startypesadd"
+    
+  }
+
+  const genFormat = () => {
+    return <table className='resTable'>
+            <thead>
+              <tr>
+                <td className='resItem resHeader'>Star Type</td>
+                <td className='resItem resHeader'>Edit</td>
+                <td className='resItem resHeader'>Delete</td>
+              </tr>
+            </thead>
+
+            {/* would map out data here */}
+            <tbody>
+              <tr>
+                <td className='resItem'>White Dwarf</td>
+                <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td className='resItem'>Red Dwarf</td>
+                <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+              </tr>
+            </tbody>
+          </table>
   }
 
   const viewingOpt = () => {
@@ -43,6 +62,7 @@ const StarTypes  = () => {
         <select className='dropdown' value ={"all"} id ="viewOpt">
           <option className='view' defaultValue={'all'} value={"all"}>View all star types</option>
         </select>
+        <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
       </div>
 
       <div className='showingRes'>

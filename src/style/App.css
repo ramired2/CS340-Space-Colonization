@@ -108,8 +108,7 @@ li a:hover {
   padding: 50px;
   background-color: #f2f2f2f7;
   position: relative;
-  /* left: 50px;
-  right: 50px; */
+  text-align: center;
   box-shadow: 10px 10px 5px #aaaaaa;
 }
 
@@ -132,7 +131,9 @@ li a:hover {
   margin-bottom: 5px;
   margin-top: 30px;
   font-size: 17px;
+  width: 55%;
   word-wrap: break-word;
+  display: inline-flex;
 }
 
 /* for buttons */
@@ -141,6 +142,12 @@ li a:hover {
   color: #f6f6f6;
   padding: 5px;
   border-radius: 5px;
+}
+
+.adding {
+  font-size: 15px;
+  font-weight: bold;
+  /* padding: 8px; */
 }
 
 .btns :hover {
@@ -162,7 +169,7 @@ li a:hover {
 
 /* for dropdown lists */
 .dropdown {
-  margin: 35px 20px 20px 0px;
+  margin: 35px 20px 20px 35px;
   color: #f6f6f6;
   background-color: #584E96;
   font-size: 15px;
@@ -183,9 +190,13 @@ li a:hover {
   background: #61dafb;
 }
 
-/* formatting for each row heading*/
-.resItem {
-  margin: 5px 80px 10px 80px;
+/* formatting for table */
+.resTable {
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  table-layout: fixed;
+  border-collapse: collapse;
 }
 
 /* formatting for text header */
@@ -200,6 +211,13 @@ li a:hover {
   overflow-wrap: break-word;
 }
 
+/* formatting for each row heading*/
+th, td {
+  padding: 5px;
+  width:150px;
+  text-align:center;
+}
+
 /* display res table in grid form */
 .row {
   display: inline-grid;
@@ -209,7 +227,7 @@ li a:hover {
 .showingRes {
   border: #61dafb 1px solid;
   border-radius: 5px;
-  
+  display: inline-block;
 }
 
 /* edit forms formatting */
@@ -225,7 +243,7 @@ li a:hover {
 
 .editAddbtn {
   margin-left: 10px;
-  text-align: start;
+  /* text-align: start; */
 }
 
 /* center the input boxes */

@@ -9,34 +9,48 @@ const NatlResources = () => {
     window.location.href="http://localhost:3000/natledit"
   }
 
+  const deleteData = (id) => {
+    // API call
+    console.log("wants to delete id: ", id)
+  }
+
+  const redirToAdd = () => {
+    window.location.href="http://localhost:3000/natladd"
+    
+  }
+
   const genFormat = () => {
-    return <div>
-            <div className='indivItem'>
-            <div className='row'>
-                <p className='resItem resHeader'>Material</p>
-                <p className='resItem'>adkvjnd</p>
-                <p className='resItem'>avdkjnl</p>
-              </div>
-              
-              <div className='row'>
-                <p className='resItem resHeader'>Planet</p>
-                <p className='resItem'>1</p>
-                <p className='resItem'>3</p>
-              </div>
+    return <table className='resTable'>
+              <thead>
+                <tr>
+                  <td className='resItem resHeader'>Material</td>
+                  <td className='resItem resHeader'>Planet</td>
+                  <td className='resItem resHeader'>Quantity</td>
+                  <td className='resItem resHeader'>Edit</td>
+                  <td className='resItem resHeader'>Delete</td>
+                </tr>
+              </thead>
 
-              <div className='row'>
-                <p className='resItem resHeader'>Quantity</p>
-                <p className='resItem'>3</p>
-                <p className='resItem'>2</p>
-              </div>
-
-              <div className='row'>
-                <p className='resItem resHeader'>Edit</p>
-                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
-                <button className='btns resItem ptr' onClick={() => {redirToEdit()}}>edit</button>
-              </div>
-            </div>
-          </div>
+              {/* would map out data here */}
+              <tbody>
+                <tr>
+                  <td className='resItem'>rubber</td>
+                  <td className='resItem'>Venus</td>
+                  <td className='resItem'>1</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td className='resItem'>Minerals</td>
+                  <td className='resItem'>mars</td>
+                  <td className='resItem'>2</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+          </table>
   }
 
   const specificData = () => {
@@ -63,6 +77,7 @@ const NatlResources = () => {
                 </div>
                 
                 {specificData()}
+                
              </div>
     }
   else if (viewOpt == 'materials' ) {
@@ -102,6 +117,7 @@ const NatlResources = () => {
           <option className='view'  value={"nations"}>Resources from a specific nation</option>
           <option className='view'  value={"materials"}>Resources by planets</option>
         </select>
+        <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
       </div>
 
       <div className='showingRes'>
