@@ -127,6 +127,7 @@ VALUES	(1, 2, 4),
         
 INSERT INTO NaturalResources (materialID, planetID, natlQuantity)
 VALUES	(1, 2, 2),
+		(3, 2, 4),
 		(1, 4, 0),
 		(3, 3, 0);
 
