@@ -10,7 +10,7 @@ const AddPlanets = (props) => {
 
   
   //   // return page
-    let link = "http://localhost:3000/planets"
+    let link = "https://cs340-space-colonization.herokuapp.com/planets"
   
   //   const history_ = useHistory();
   
@@ -28,7 +28,7 @@ const AddPlanets = (props) => {
   //     // });
       
   //     // redirects user back to their works page
-  //     window.location.href="http://localhost:3000/planets"
+  //     window.location.href="https://cs340-space-colonization.herokuapp.com/planets"
     }
   
   
@@ -64,7 +64,7 @@ const AddPlanets = (props) => {
                   </select>
           </div>
           <div className='buttonsInline'>
-            <button className='btns indivItem formItem' onClick={() => {window.location.href="http://localhost:3000/planets"}}>Back</button>
+            <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/planets"}}>Back</button>
             <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Add Planet</button>
           </div>
         </form>

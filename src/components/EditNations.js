@@ -11,7 +11,7 @@ const EditNations = (props) => {
   const [numShip, setNumShip] = useState(null);
 
 //   // return page
-  let link = "http://localhost:3000/nations"
+  let link = "https://cs340-space-colonization.herokuapp.com/nations"
 
 //   const history_ = useHistory();
 
@@ -29,7 +29,7 @@ const EditNations = (props) => {
 //     // });
     
 //     // redirects user back to their works page
-//     window.location.href="http://localhost:3000/nations"
+//     window.location.href="https://cs340-space-colonization.herokuapp.com/nations"
   }
 
 
@@ -45,7 +45,7 @@ const EditNations = (props) => {
           <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Ship quantity" name="0" value={numShip} onChange={(e) => setNumShip(e.target.value)}/></div>
           <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Colonized planets quantity" name="0" value={numCol} onChange={(e) => setNumCol(e.target.value)}/></div>
         </div>
-          <button className='btns indivItem formItem' onClick={() => {window.location.href="http://localhost:3000/nations"}}>Back</button>
+          <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/nations"}}>Back</button>
           <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Edit Nation</button>
       </form>
       

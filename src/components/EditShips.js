@@ -12,7 +12,7 @@ const EditNations = (props) => {
   const [capacity, setCapacity] = useState(null);
 
 //   // return page
-  let link = "http://localhost:3000/ships"
+  let link = "https://cs340-space-colonization.herokuapp.com/ships"
 
 //   const history_ = useHistory();
 
@@ -30,7 +30,7 @@ const EditNations = (props) => {
 //     // });
     
 //     // redirects user back to their works page
-//     window.location.href="http://localhost:3000/ships"
+//     window.location.href="https://cs340-space-colonization.herokuapp.com/ships"
   }
 
 
@@ -53,7 +53,7 @@ const EditNations = (props) => {
           <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Ship capacity" name="0" value={capacity} onChange={(e) => setCapacity(e.target.value)}/></div>
         </div>
         <div className='buttonsInline'>
-          <button className='btns indivItem formItem' onClick={() => {window.location.href="http://localhost:3000/ships"}}>Back</button>
+          <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/ships"}}>Back</button>
           <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Edit Ship</button>
         </div>
       </form>

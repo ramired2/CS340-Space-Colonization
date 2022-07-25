@@ -6,7 +6,7 @@ const Planets = () => {
   // console.log(viewOpt)
 
   const redirToEdit = () => {
-    window.location.href="http://localhost:3000/planetsedit"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/planetsedit"
   }
 
   const deleteData = (id) => {
@@ -15,7 +15,7 @@ const Planets = () => {
   }
 
   const redirToAdd = () => {
-    window.location.href="http://localhost:3000/planetsadd"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/planetsadd"
     
   }
 

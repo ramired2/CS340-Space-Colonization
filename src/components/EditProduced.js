@@ -12,7 +12,7 @@ const EditProduced = (props) => {
   const [prodQuantity, setprodQuantity] = useState(null);
 
 //   // return page
-  let link = "http://localhost:3000/produced"
+  let link = "https://cs340-space-colonization.herokuapp.com/produced"
 
 //   const history_ = useHistory();
 
@@ -31,7 +31,7 @@ const EditProduced = (props) => {
 //     // });
     
 //     // redirects user back to their works page
-//     window.location.href="http://localhost:3000/produced"
+//     window.location.href="https://cs340-space-colonization.herokuapp.com/produced"
   }
 
 
@@ -59,7 +59,7 @@ const EditProduced = (props) => {
           <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Quantity" min = "0" value={prodQuantity} onChange={(e) => setprodQuantity(e.target.value)}/></div>
         </div>
         <div className='buttonsInline'>
-          <button className='btns indivItem formItem' onClick={() => {window.location.href="http://localhost:3000/produced"}}>Back</button>
+          <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/produced"}}>Back</button>
           <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Edit Produced Material</button>
         </div>
       </form>

@@ -6,11 +6,11 @@ const Materials = () => {
   // console.log(viewOpt)
 
   const redirToEdit = () => {
-    window.location.href="http://localhost:3000/materialsedit"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/materialsedit"
   }
 
   const redirToAdd = () => {
-    window.location.href="http://localhost:3000/materialsadd"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/materialsadd"
   }
 
   const deleteData = (id) => {

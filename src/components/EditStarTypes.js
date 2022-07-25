@@ -7,7 +7,7 @@ const EditStarTypes = (props) => {
       const [type, setType] = useState("");
     
     //   // return page
-      let link = "http://localhost:3000/startypes"
+      let link = "https://cs340-space-colonization.herokuapp.com/startypes"
     
     //   const history_ = useHistory();
     
@@ -23,7 +23,7 @@ const EditStarTypes = (props) => {
     //     // });
         
     //     // redirects user back to their works page
-    //     window.location.href="http://localhost:3000/startypes"
+    //     window.location.href="https://cs340-space-colonization.herokuapp.com/startypes"
       }
     
     
@@ -38,7 +38,7 @@ const EditStarTypes = (props) => {
               <div><input className='indivItem formItem' /* ref={parentRef} */ type="text" placeholder="Star type" name="Star type" value={type} onChange={(e) => setType(e.target.value)}/></div>
             </div>
             <div className='buttonsInline'>
-              <button className='btns indivItem formItem' onClick={() => {window.location.href="http://localhost:3000/ships"}}>Back</button>
+              <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/ships"}}>Back</button>
               <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Edit Type</button>
             </div>
           </form>

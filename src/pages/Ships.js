@@ -6,11 +6,11 @@ const Ships = () => {
   // console.log(viewOpt)
 
   const redirToEdit = () => {
-    window.location.href="http://localhost:3000/shipsedit"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/shipsedit"
   }
 
   const redirToAdd = () => {
-    window.location.href="http://localhost:3000/shipsadd"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/shipsadd"
     
   }
 

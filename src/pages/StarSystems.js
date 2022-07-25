@@ -6,7 +6,7 @@ const StarSystems = () => {
   // console.log(viewOpt)
 
   const redirToEdit = () => {
-    window.location.href="http://localhost:3000/starsystemsedit"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/starsystemsedit"
   }
 
   const deleteData = (id) => {
@@ -15,7 +15,7 @@ const StarSystems = () => {
   }
 
   const redirToAdd = () => {
-    window.location.href="http://localhost:3000/materialsadd"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/materialsadd"
   }
 
   const genFormat = () => {

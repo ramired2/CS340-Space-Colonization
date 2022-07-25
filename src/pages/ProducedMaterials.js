@@ -6,7 +6,7 @@ const ProducedMaterials = () => {
   // console.log(viewOpt)
 
   const redirToEdit = () => {
-    window.location.href="http://localhost:3000/prodedit"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/prodedit"
   }
 
   const deleteData = (id) => {
@@ -15,7 +15,7 @@ const ProducedMaterials = () => {
   }
 
   const redirToAdd = () => {
-    window.location.href="http://localhost:3000/prodadd"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/prodadd"
     
   }
 

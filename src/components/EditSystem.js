@@ -13,7 +13,7 @@ const EditSystems = (props) => {
   const [numColonized, setNumColonized] = useState(null);
 
 //   // return page
-  let link = "http://localhost:3000/starsystems"
+  let link = "https://cs340-space-colonization.herokuapp.com/starsystems"
 
 //   const history_ = useHistory();
 
@@ -32,7 +32,7 @@ const EditSystems = (props) => {
 //     // });
     
 //     // redirects user back to their works page
-//     window.location.href="http://localhost:3000/starsystems"
+//     window.location.href="https://cs340-space-colonization.herokuapp.com/starsystems"
   }
 
 
@@ -56,7 +56,7 @@ const EditSystems = (props) => {
           <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Colonized Count" name="0" value={numColonized} onChange={(e) => setNumColonized(e.target.value)}/></div>
         </div>
         <div className='buttonsInline'>
-          <button className='btns indivItem formItem' onClick={() => {window.location.href="http://localhost:3000/starsystems"}}>Back</button>
+          <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/starsystems"}}>Back</button>
           <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Edit system</button>
         </div>
       </form>

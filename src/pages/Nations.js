@@ -8,7 +8,7 @@ const Nations = () => {
   
 
   const redirToEdit = () => {
-    window.location.href="http://localhost:3000/nationsedit"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/nationsedit"
   }
 
   const deleteData = (id) => {
@@ -17,7 +17,7 @@ const Nations = () => {
   }
 
   const redirToAdd = () => {
-    window.location.href="http://localhost:3000/nationsadd"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/nationsadd"
     
   }
 

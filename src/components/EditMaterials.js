@@ -12,7 +12,7 @@ const EditMaterials = (props) => {
   const [units, setunits] = useState(null);
 
 //   // return page
-  let link = "http://localhost:3000/materials"
+  let link = "https://cs340-space-colonization.herokuapp.com/materials"
 
 //   const history_ = useHistory();
 
@@ -31,7 +31,7 @@ const EditMaterials = (props) => {
 //     // });
     
 //     // redirects user back to their works page
-//     window.location.href="http://localhost:3000/materials"
+//     window.location.href="https://cs340-space-colonization.herokuapp.com/materials"
   }
 
 
@@ -48,7 +48,7 @@ const EditMaterials = (props) => {
           <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Units" name="0" value={units} onChange={(e) => setunits(e.target.value)}/></div>
         </div>
         <div className='buttonsInline'>
-          <button className='btns indivItem formItem' onClick={() => {window.location.href="http://localhost:3000/materials"}}>Back</button>
+          <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/materials"}}>Back</button>
           <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Edit system</button>
         </div>
       </form>

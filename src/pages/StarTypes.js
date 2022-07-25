@@ -5,7 +5,7 @@ const StarTypes  = () => {
   // console.log(viewOpt)
 
   const redirToEdit = () => {
-    window.location.href="http://localhost:3000/startypesedit"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/startypesedit"
   }
 
   const deleteData = (id) => {
@@ -14,7 +14,7 @@ const StarTypes  = () => {
   }
 
   const redirToAdd = () => {
-    window.location.href="http://localhost:3000/startypesadd"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/startypesadd"
     
   }
 

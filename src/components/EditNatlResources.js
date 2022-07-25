@@ -12,7 +12,7 @@ const EditNatlResources = (props) => {
   const [natlQuantity, setnatlQuantity] = useState(10000);
 
 //   // return page
-  let link = "http://localhost:3000/natl"
+  let link = "https://cs340-space-colonization.herokuapp.com/natl"
 
 //   const history_ = useHistory();
 
@@ -31,7 +31,7 @@ const EditNatlResources = (props) => {
 //     // });
     
 //     // redirects user back to their works page
-//     window.location.href="http://localhost:3000/natl"
+//     window.location.href="https://cs340-space-colonization.herokuapp.com/natl"
   }
 
 
@@ -59,7 +59,7 @@ const EditNatlResources = (props) => {
           <div>Quantity (kgs)<input className='indivItem formItem' ref={parentRef} type="number" placeholder="Quantity" min = "0" value={natlQuantity} onChange={(e) => setnatlQuantity(e.target.value)}/></div>
         </div>
         <div className='buttonsInline'>
-          <button className='btns indivItem formItem' onClick={() => {window.location.href="http://localhost:3000/natl"}}>Back</button>
+          <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/natl"}}>Back</button>
           <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Edit Natural Resource</button>
         </div>
       </form>

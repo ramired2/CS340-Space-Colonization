@@ -6,7 +6,7 @@ const NatlResources = () => {
   // console.log(viewOpt)
 
   const redirToEdit = () => {
-    window.location.href="http://localhost:3000/natledit"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/natledit"
   }
 
   const deleteData = (id) => {
@@ -15,7 +15,7 @@ const NatlResources = () => {
   }
 
   const redirToAdd = () => {
-    window.location.href="http://localhost:3000/natladd"
+    window.location.href="https://cs340-space-colonization.herokuapp.com/natladd"
     
   }
 
