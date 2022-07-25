@@ -36,8 +36,8 @@ const Nations = () => {
             {/* would map out data here */}
             <tbody>
               <tr>
-                <td className='resItem'>Canada</td>
-                <td className='resItem'>5</td>
+                <td className='resItem'>Mexico</td>
+                <td className='resItem'>1</td>
                 <td className='resItem'>2</td>
                 <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                 <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
@@ -45,8 +45,17 @@ const Nations = () => {
             </tbody>
             <tbody>
               <tr>
-                <td className='resItem'>Mx</td>
-                <td className='resItem'>3</td>
+                <td className='resItem'>Guatemala</td>
+                <td className='resItem'>1</td>
+                <td className='resItem'>1</td>
+                <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td className='resItem'>Canada</td>
+                <td className='resItem'>2</td>
                 <td className='resItem'>1</td>
                 <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                 <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>

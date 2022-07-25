@@ -35,8 +35,8 @@ const NatlResources = () => {
               <tbody>
                 <tr>
                   <td className='resItem'>rubber</td>
-                  <td className='resItem'>Venus</td>
-                  <td className='resItem'>1</td>
+                  <td className='resItem'>Anunnaki</td>
+                  <td className='resItem'>2</td>
                   <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                   <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
                 </tr>
@@ -44,8 +44,26 @@ const NatlResources = () => {
               <tbody>
                 <tr>
                   <td className='resItem'>Minerals</td>
-                  <td className='resItem'>mars</td>
-                  <td className='resItem'>2</td>
+                  <td className='resItem'>Anunnaki</td>
+                  <td className='resItem'>4</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td className='resItem'>Rubber</td>
+                  <td className='resItem'>Cancri e</td>
+                  <td className='resItem'>0</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td className='resItem'>Minerals</td>
+                  <td className='resItem'>Proxima Centauri d</td>
+                  <td className='resItem'>0</td>
                   <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                   <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
                 </tr>

@@ -31,14 +31,21 @@ const StarTypes  = () => {
             {/* would map out data here */}
             <tbody>
               <tr>
-                <td className='resItem'>White Dwarf</td>
+                <td className='resItem'>Red Giant Star</td>
                 <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                 <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
               </tr>
             </tbody>
             <tbody>
               <tr>
-                <td className='resItem'>Red Dwarf</td>
+                <td className='resItem'>White Dwarf Star</td>
+                <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td className='resItem'>Red Dwarf Star</td>
                 <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                 <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
               </tr>

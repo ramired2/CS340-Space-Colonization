@@ -58,7 +58,6 @@ const Materials = () => {
                 <tr>
                   <td className='resItem resHeader'>Material</td>
                   <td className='resItem resHeader'>Value (units)</td>
-                  <td className='resItem resHeader'>Nation</td>
                   <td className='resItem resHeader'>Edit</td>
                   <td className='resItem resHeader'>Delete</td>
                 </tr>
@@ -67,8 +66,8 @@ const Materials = () => {
               {/* would map out data here */}
               <tbody>
                 <tr>
-                  <td className='resItem'>adkvjnd</td>
-                  <td className='resItem'>3</td>
+                  <td className='resItem'>Rubber</td>
+                  <td className='resItem'>6 lbs</td>
                   <td className='resItem'>akvjd</td>
                   <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                   <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
@@ -76,8 +75,17 @@ const Materials = () => {
               </tbody>
               <tbody>
                 <tr>
-                  <td className='resItem'>adkvjnd</td>
-                  <td className='resItem'>3</td>
+                  <td className='resItem'>Oil</td>
+                  <td className='resItem'>9 litters</td>
+                  <td className='resItem'>adhbvndjv</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td className='resItem'>Minerals</td>
+                  <td className='resItem'>3 oz</td>
                   <td className='resItem'>adhbvndjv</td>
                   <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                   <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
@@ -135,7 +143,8 @@ const Materials = () => {
                   <select className='dropdown' onChange={e => setspecific(e.target.value)} id ="viewOpt">
                   <option className='view'  defaultValue={'which'} value={"which"}>Pick a nation</option>
                     <option className='view' value={"all"}>Canada</option>
-                    <option className='view'  value={"specific"}>MX</option>
+                    <option className='view'  value={"specific"}>Guatemala</option>
+                    <option className='view'  value={"specific"}>Mexico</option>
                   </select>
                 </div>
                 
@@ -148,8 +157,10 @@ const Materials = () => {
                 <div className="dropdownList">
                   <select className='dropdown' onChange={e => setspecific(e.target.value)} id ="viewOpt">
                   <option className='view'  defaultValue={'which'} value={"which"}>Pick a planet</option>
-                    <option className='view' value={"can"}>Venus</option>
-                    <option className='view'  value={"mx"}>Mars</option>
+                    <option className='view' value={"can"}>Proxima Centauri b</option>
+                    <option className='view'  value={"mx"}>Anunnaki</option>
+                    <option className='view'  value={"mx"}>Proxima Centauri d</option>
+                    <option className='view'  value={"mx"}>Cancri e</option>
                   </select>
                 </div>
                 

@@ -116,9 +116,18 @@ li a:hover {
   text-align: center;
   font-size: 36px;
   margin-bottom: -5px;
-  color: 141414;
+  color: #141414;
   /* font-family: 'Pristina'; */
   font-weight: bold;
+}
+
+.subsubtopic {
+      text-align: center;
+    font-size: 23px;
+    margin-top: 50px;
+    margin-bottom: -5px;
+    color: #141414;
+    font-weight: bold;
 }
 
 .text {
@@ -225,7 +234,7 @@ th, td {
 
 /* formatting results from dropdown div */
 .showingRes {
-  border: #61dafb 1px solid;
+  border: #61dafb 2px solid;
   border-radius: 5px;
   display: inline-block;
 }
@@ -247,9 +256,11 @@ th, td {
 }
 
 /* center the input boxes */
-/* .centerIt {
+.centerIt {
   text-align: center;
-} */
+  display: block;
+  margin: 11px;
+}
 
 .formContainer {
   margin-top: 15px;

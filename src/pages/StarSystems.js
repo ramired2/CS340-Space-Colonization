@@ -35,9 +35,20 @@ const StarSystems = () => {
               {/* would map out data here */}
               <tbody>
                 <tr>
-                  <td className='resItem'>rusdvgsdbber</td>
-                  <td className='resItem'>Red Dwarf</td>
-                  <td className='resItem'>1</td>
+                  <td className='resItem'>Proxima Centauri</td>
+                  <td className='resItem'>Red Dwarf Star</td>
+                  <td className='resItem'>4</td>
+                  <td className='resItem'>3</td>
+                  <td className='resItem'>0</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td className='resItem'>Aldebaran</td>
+                  <td className='resItem'>Red Giant Star</td>
+                  <td className='resItem'>2</td>
                   <td className='resItem'>2</td>
                   <td className='resItem'>0</td>
                   <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
@@ -46,11 +57,11 @@ const StarSystems = () => {
               </tbody>
               <tbody>
                 <tr>
-                  <td className='resItem'>Minergdhbgdals</td>
-                  <td className='resItem'>White Dwarf</td>
+                  <td className='resItem'>Sirius B</td>
+                  <td className='resItem'>White Dwarf Star</td>
+                  <td className='resItem'>5</td>
                   <td className='resItem'>2</td>
-                  <td className='resItem'>1</td>
-                  <td className='resItem'>1</td>
+                  <td className='resItem'>0</td>
                   <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                   <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
                 </tr>

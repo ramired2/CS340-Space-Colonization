@@ -35,9 +35,9 @@ const Planets = () => {
               {/* would map out data here */}
               <tbody>
                 <tr>
-                  <td className='resItem'>Venus</td>
-                  <td className='resItem'>MX</td>
-                  <td className='resItem'>Ravy</td>
+                  <td className='resItem'>Proxima Centauri b</td>
+                  <td className='resItem'>Mexico</td>
+                  <td className='resItem'>Proxima Centauri</td>
                   <td className='resItem'>Yes</td>
                   <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                   <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
@@ -45,9 +45,29 @@ const Planets = () => {
               </tbody>
               <tbody>
                 <tr>
-                  <td className='resItem'>Mars</td>
+                  <td className='resItem'>Anunnaki</td>
+                  <td className='resItem'>Mexico</td>
+                  <td className='resItem'>Aldebaran</td>
+                  <td className='resItem'>Yes</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td className='resItem'>Proxima Centauri d</td>
+                  <td className='resItem'>Guatemala</td>
+                  <td className='resItem'>Proxima Centauri</td>
+                  <td className='resItem'>Yes</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td className='resItem'>Cancri e</td>
                   <td className='resItem'>Canada</td>
-                  <td className='resItem'>Sron</td>
+                  <td className='resItem'>Sirius B</td>
                   <td className='resItem'>Yes</td>
                   <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                   <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>

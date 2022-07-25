@@ -24,6 +24,7 @@ const Ships = () => {
             <thead>
               <tr>
                 <td className='resItem resHeader'>Ship Name</td>
+                <td className='resItem resHeader'>Nation</td>
                 <td className='resItem resHeader'>Ship Speed</td>
                 <td className='resItem resHeader'>Ship Capacity</td>
                   <td className='resItem resHeader'>Edit</td>
@@ -34,18 +35,40 @@ const Ships = () => {
             {/* would map out data here */}
             <tbody>
               <tr>
-                <td className='resItem'>Maria Dwarf</td>
-                <td className='resItem'>2</td>
-                <td className='resItem'>9</td>
+                <td className='resItem'>Bacchus</td>
+                <td className='resItem'>Mexico</td>
+                <td className='resItem'>5</td>
+                <td className='resItem'>10</td>
                 <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                 <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
               </tr>
             </tbody>
             <tbody>
               <tr>
-                <td className='resItem'>Cafetera</td>
-                <td className='resItem'>4.5</td>
-                <td className='resItem'>12</td>
+                <td className='resItem'>Pinta</td>
+                <td className='resItem'>Mexico</td>
+                <td className='resItem'>2</td>
+                <td className='resItem'>16</td>
+                <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td className='resItem'>Guatemala</td>
+                <td className='resItem'>Bacchus</td>
+                <td className='resItem'>5.2</td>
+                <td className='resItem'>10</td>
+                <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td className='resItem'>Albatross</td>
+                <td className='resItem'>Canada</td>
+                <td className='resItem'>7</td>
+                <td className='resItem'>5</td>
                 <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                 <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
               </tr>
@@ -68,7 +91,8 @@ const Ships = () => {
                     <select className='dropdown' onChange={e => setNation(e.target.value)} id ="viewOpt">
                     <option className='view'  defaultValue={'which'} value={"which"}>Pick a nation</option>
                       <option className='view' value={"all"}>Canada</option>
-                      <option className='view'  value={"specific"}>MX</option>
+                      <option className='view'  value={"specific"}>Guatemala</option>
+                      <option className='view'  value={"specific"}>Mexico</option>
                     </select>
                   </div>
 
