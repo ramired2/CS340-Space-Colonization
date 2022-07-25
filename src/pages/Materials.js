@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 const Materials = () => {
   const [viewOpt, setViewOpt] = useState("all");
-  const [specific, setspecific] = useState("specific");
+  const [specific, setspecific] = useState("which");
   // console.log(viewOpt)
 
   const redirToEdit = () => {
@@ -18,7 +18,7 @@ const Materials = () => {
     console.log("wants to delete id: ", id)
   }
 
-  const genFormat = () => {
+  const planetTable = () => {
     return <table className='resTable'>
               <thead>
                 <tr>
@@ -35,7 +35,7 @@ const Materials = () => {
                 <tr>
                   <td className='resItem'>adkvjnd</td>
                   <td className='resItem'>3</td>
-                  <td className='resItem'>1</td>
+                  <td className='resItem'>dafnvjvd</td>
                   <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                   <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
                 </tr>
@@ -44,7 +44,73 @@ const Materials = () => {
                 <tr>
                   <td className='resItem'>adkvjnd</td>
                   <td className='resItem'>3</td>
-                  <td className='resItem'>1</td>
+                  <td className='resItem'>advnkvm</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+          </table>
+  }
+
+  const nationTable = () => {
+    return <table className='resTable'>
+              <thead>
+                <tr>
+                  <td className='resItem resHeader'>Material</td>
+                  <td className='resItem resHeader'>Value (units)</td>
+                  <td className='resItem resHeader'>Nation</td>
+                  <td className='resItem resHeader'>Edit</td>
+                  <td className='resItem resHeader'>Delete</td>
+                </tr>
+              </thead>
+
+              {/* would map out data here */}
+              <tbody>
+                <tr>
+                  <td className='resItem'>adkvjnd</td>
+                  <td className='resItem'>3</td>
+                  <td className='resItem'>akvjd</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td className='resItem'>adkvjnd</td>
+                  <td className='resItem'>3</td>
+                  <td className='resItem'>adhbvndjv</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+          </table>
+  }
+
+  // 1 is view all, 2 is view planet, 3 is view nation
+  const genFormat = () => {
+    return <table className='resTable'>
+              <thead>
+                <tr>
+                  <td className='resItem resHeader'>Material</td>
+                  <td className='resItem resHeader'>Value (units)</td>
+                  <td className='resItem resHeader'>Edit</td>
+                  <td className='resItem resHeader'>Delete</td>
+                </tr>
+              </thead>
+
+              {/* would map out data here */}
+              <tbody>
+                <tr>
+                  <td className='resItem'>adkvjnd</td>
+                  <td className='resItem'>3</td>
+                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td className='resItem'>adkvjnd</td>
+                  <td className='resItem'>3</td>
                   <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
                   <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
                 </tr>
@@ -55,7 +121,8 @@ const Materials = () => {
   const specificData = () => {
     // API call for data -- output data
     if ((viewOpt == "nation" || viewOpt == "planet") && specific != "which") {
-      return genFormat()
+      if (viewOpt == "nation") { return nationTable() }
+      else {return planetTable()}
     }
   }
 

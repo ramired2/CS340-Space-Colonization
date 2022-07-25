@@ -98,8 +98,8 @@ const Planets = () => {
       <div className="dropdownList">
         <select className='dropdown' onChange={e => setViewOpt(e.target.value)} id ="viewOpt">
           <option className='view'  defaultValue={'all'} value={"all"}>View all planets</option>
-          <option className='view'  value={"nations"}>Uncolonized Planets</option>
-          <option className='view'  value={"colonized"}>Planets from a specific nation</option>
+          <option className='view'  value={"nations"}>Planets from a specific nation</option>
+          <option className='view'  value={"colonized"}>Uncolonized Planets</option>
         </select>
         <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
       </div>

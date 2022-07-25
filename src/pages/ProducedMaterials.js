@@ -114,8 +114,8 @@ const ProducedMaterials = () => {
       <div className="dropdownList">
         <select className='dropdown' onChange={e => setViewOpt(e.target.value)} id ="viewOpt">
           <option className='view'  defaultValue={'all'} value={"all"}>View all planets</option>
-          <option className='view'  value={"nations"}>View planets from a specific nation</option>
-          <option className='view'  value={"materials"}>View all materials from a planet</option>
+          <option className='view'  value={"nations"}>Produced materials from a specific nation</option>
+          <option className='view'  value={"materials"}>Produced materials from a planet</option>
         </select>
         <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
       </div>
