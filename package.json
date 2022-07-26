@@ -2,7 +2,6 @@
   "name": "SpaceColonization",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://web.engr.oregonstate.edu/~ramired2/spaceCol",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -15,7 +14,6 @@
   },
   "scripts": {
     "start": "(set PORT=3000 || export PORT=3000) && react-scripts start",
-    "deploy": "npm run build && rsync -avz build/ flip.engr.oregonstate.edu:public_html/spaceCol/",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
