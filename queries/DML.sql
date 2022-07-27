@@ -14,11 +14,11 @@
     
 		-- get all Nations data and sort by alphabetical order ASC then DESC
 		SELECT nationID, nationName, conquestsQuantity, shipQuantity 
-			FROM NATIONS
+			FROM Nations
 			ORDER BY nationName ASC;
 			
 		SELECT nationID, nationName, conquestsQuantity, shipQuantity 
-			FROM NATIONS
+			FROM Nations
 			ORDER BY nationName DESC;
             
 		-- get nations with 1+ ships ASC or DESC
@@ -108,7 +108,7 @@
         SELECT numColonized FROM StarSystems WHERE starID = :inputFromDropdown;
         
         -- get all star systems and IDs to populate dropdown
-        SELECT starID, systemName FROM StarSystems ORDER BY systemName ASC;
+        SELECT systemID, systemName FROM StarSystems ORDER BY systemName ASC;
 
 	-- UPDATES
 		-- updates the num of colonized planets in a given starSystem
@@ -168,20 +168,32 @@
 
 	-- UPDATE
 		-- updates a planet that has been recently colonized - add a relationship bt nations and planets
-		UPDATE Planets SET nationID = :IDFromDropdown, planetName = :userInput, systemID = :IDFromDropdown, colonized = :1Colonized0NotColonized;
+		UPDATE Planets SET nationID = :IDFromDropdown, planetName = :userInput, systemID = :IDFromDropdown, colonized = :1Colonized0NotColonized WHERE planetID = :inputFromDropdown;
 
 		-- update a planet to have no nation associated with it
-		UPDATE Planets SET nationID = NULL;
+		UPDATE Planets SET nationID = NULL WHERE planetID = :inputFromDropdown;
         
 	-- SELECT
+		-- get all planets
+        SELECT Planets.planetID, Planets.planetName, Nations.nationName, StarSystems.systemName, Planets.colonized 
+			FROM Nations 
+            INNER JOIN Planets ON Nations.nationID = Planets.nationID
+			INNER JOIN StarSystems ON Planets.systemID = StarSystems.systemID
+            Order BY Planets.planetName ASC;
+    
 		-- get all planets that are not colonized
-		SELECT Planets.planetID, Planets.planetName, StarSystems.systemName, Planets.colonized 
-			FROM Planets 
-            INNER JOIN StarSystems ON Planets.systemID = StarSystems.systemID
-            WHERE colonized = 0;
+		SELECT Planets.planetID, Planets.planetName, Nations.nationName, StarSystems.systemName, Planets.colonized 
+			FROM Nations 
+            INNER JOIN Planets ON Nations.nationID = Planets.nationID
+			INNER JOIN StarSystems ON Planets.systemID = StarSystems.systemID
+            WHERE colonized = 0
+            Order BY Planets.planetName ASC;
         
         -- get all planets from a specific nation
-        SELECT Nations.nationName, Planets.planetName; 
+        SELECT Planets.planetID, .planetName, Nations.nationName, StarSystems.systemName, Planets.colonized FROM Nations
+        INNER JOIN Planets ON Nations.nationID = Planets.nationID
+        INNER JOIN StarSystems ON Planets.systemID = StarSystems.systemID
+        WHERE Nations.nationID = :inputFromDropdown;
     
     -- DELETE
 		-- Delete a planet
