@@ -1,37 +1,37 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useHistory } from "react-router-dom";
-// import axios from 'axios';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const EditMaterials = (props) => {
 //   const [parent, setParent] = useState("");
-//   const [planetID, setplanetID] = useState(null);
+//   const [materialID, setmaterialID] = useState(null);
   const [name, setName] = useState("");
-  const [planetID, setplanetID] = useState("");
-  const [value, setvalue] = useState(null);
-  const [units, setunits] = useState(null);
+  const [value, setvalue] = useState("");
+  const [units, setunits] = useState("");
+
+  const id = props.match.params.id;
 
 //   // return page
-  let link = "https://cs340-space-colonization.herokuapp.com/materials"
+  let link = "/materials"
 
-//   const history_ = useHistory();
+  const history = useHistory();
 
 //   // API call for creating a new tree
   const createEmpty = async(e) => {
 
-//     e.preventDefault();
-//     // await axios.post('http://localhost:5000/', {
-//     //   method:'POST',
-//     //   headers: { 'Content-Type': 'application/json'},
-//     //   planetID: planetID, // props
-//     //   name: name,   
-//     //   distance: distance,
-//     //   value: value,
-//      //  units: units
-//     // });
+    e.preventDefault();
+    await axios.post('https://cs340-spacecol-api.herokuapp.com/editmaterial', {
+      method:'POST',
+      headers: { 'Content-Type': 'application/json'},
+      materialID: id, // props
+      name: name,   
+      value: value,
+      units: units
+    });
     
-//     // redirects user back to their works page
-//     window.location.href="https://cs340-space-colonization.herokuapp.com/materials"
+    // redirects user back to their works page
+    history.push(link);
   }
 
 
@@ -48,7 +48,7 @@ const EditMaterials = (props) => {
           <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Units" name="0" value={units} onChange={(e) => setunits(e.target.value)}/></div>
         </div>
         <div className='buttonsInline'>
-          <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/materials"}}>Back</button>
+          <button className='btns indivItem formItem' onClick={() => {history.push(link);}}>Back</button>
           <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Edit system</button>
         </div>
       </form>

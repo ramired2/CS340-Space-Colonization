@@ -1,39 +1,59 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useHistory } from "react-router-dom";
-// import axios from 'axios';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const AddNations = (props) => {
-//   const [parent, setParent] = useState("");
-//   const [nationID, setNationID] = useState(null);
+const AddNations = () => {
   const [name, setName] = useState("");
-  const [numCol, setNumCol] = useState(null);
-  const [numShip, setNumShip] = useState(null);
+  const [numCol, setNumCol] = useState("");
+  const [numShip, setNumShip] = useState("");
+
+  const [data, updateData] = useState([])
 
 //   // return page
-  let link = "https://cs340-space-colonization.herokuapp.com/nations"
+  let link = "/nations"
 
-//   const history_ = useHistory();
+  let getLink = "https://cs340-spacecol-api.herokuapp.com/addnation"
+
+  const history = useHistory();
 
 //   // API call for creating a new tree
   const createEmpty = async(e) => {
 
-//     e.preventDefault();
-//     // await axios.post('http://localhost:5000/', {
-//     //   method:'POST',
-//     //   headers: { 'Content-Type': 'application/json'},
-//     //   nationID: nationID, 
-//     //   name: name,   
-//     //   numColonized: numCol,
-//     //   numShips: numShip,
-//     // });
+    e.preventDefault();
+    await axios.post(getLink, {
+      method:'POST',
+      headers: { 'Content-Type': 'application/json'},
+      name: name,   
+      numColonized: numCol,
+      numShips: numShip,
+    });
     
-//     // redirects user back to their works page
-//     window.location.href="https://cs340-space-colonization.herokuapp.com/nations"
+    // redirects user back to their works page
+    history.push(link);
   }
 
 
-  const parentRef = useRef()
+  const nameRef = useRef()
+  const numColRef = useRef()
+  const numShipRef = useRef()
+
+  function handleAddPerson(e){
+    const names = nameRef.current.value
+    const colonized = numColRef.current.value
+    const ships = numShipRef.current.value
+
+    if (name === '' || colonized === '' || ships === '') return
+
+    updateData(prevData => {
+      return [...prevData, {nationID: 1, nationName: names, conquestsQuantity: colonized, shipQuantity: ships}]
+    })
+
+    console.log(name)
+    nameRef.current.value = null
+    numColRef.current.value = null
+    numShipRef.current.value = null
+  }
 
 
   return (
@@ -41,12 +61,12 @@ const AddNations = (props) => {
       <form id="target" action={link} encType="multipart/form-data" onSubmit={createEmpty}>
         <label className='subtopic text'>Add a Nation</label>
         <div className='formContainer'>
-          <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Nation name" name="Nation Name" value={name} onChange={(e) => setName(e.target.value)}/></div>
-          <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Ship quantity" name="0" value={numShip} onChange={(e) => setNumShip(e.target.value)}/></div>
-          <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Colonized planets quantity" name="0" value={numCol} onChange={(e) => setNumCol(e.target.value)}/></div>
+          <div><input className='indivItem formItem' ref={nameRef} type="text" placeholder="Nation name" value={name} onChange={(e) => setName(e.target.value)}/></div>
+          <div><input className='indivItem formItem' ref={numShipRef} type="text" placeholder="Ship quantity" value={numShip} onChange={(e) => setNumShip(e.target.value)}/></div>
+          <div><input className='indivItem formItem' ref={numColRef} type="text" placeholder="Colonized planets quantity" value={numCol} onChange={(e) => setNumCol(e.target.value)}/></div>
         </div>
-          <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/nations"}}>Back</button>
-          <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Add Nation</button>
+          <button className='btns indivItem formItem' onClick={() => {history.push(link)}}>Back</button>
+          <button className="btns indivItem formItem" type="submit"  onClick={ handleAddPerson } >Add Nation</button>
       </form>
       
     </div>

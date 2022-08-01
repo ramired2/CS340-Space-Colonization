@@ -1,22 +1,96 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 const Materials = () => {
   const [viewOpt, setViewOpt] = useState("all");
   const [specific, setspecific] = useState("which");
+  const [nations, setnations] = useState([]);
+  const [planets, setplanets] = useState([]);
   // console.log(viewOpt)
 
-  const redirToEdit = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/materialsedit"
+  const [data, setdata] = useState([]);
+  const [planetData, setplanetData] = useState([]);
+  const [nationData, setnationData] = useState([]);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    allMaterials()
+    dropdownNations()
+    dropdownPlanets()
+  }, []);
+
+  const redirToEdit = (id) => {
+    let link = "/materialsedit/" + id
+    history.push(link)
   }
 
-  const redirToAdd = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/materialsadd"
-  }
-
-  const deleteData = (id) => {
+  const deleteData = async(id) => {
     // API call
     console.log("wants to delete id: ", id)
+
+    await axios.delete (`https://cs340-spacecol-api.herokuapp.com/deleteMaterial/${id}`, {
+    headers: { 'Content-Type': 'application/json'}
+    })
+    .catch(err => console.log(err));
+    allMaterials()
   }
+
+  const allMaterials = async() => {
+    const result = await axios ("https://cs340-spacecol-api.herokuapp.com/allmaterials", {
+      headers: { 'Content-Type': 'application/json'},
+    })
+    .then(result => setdata(result.data))
+    .catch(err => console.log(err));
+
+    console.log(data)
+  }
+
+    // avail nations dropdown
+    const dropdownNations = async() => {
+      const result = await axios ("https://cs340-spacecol-api.herokuapp.com/dropdownNations", {
+        headers: { 'Content-Type': 'application/json'},
+      })
+      .then(result => setnations(result.data))
+      .catch(err => console.log(err));
+  
+      console.log(data)
+    }
+
+    // avail nations dropdown
+    const dropdownPlanets = async() => {
+      const result = await axios ("https://cs340-spacecol-api.herokuapp.com/dropdownPlanets", {
+        headers: { 'Content-Type': 'application/json'},
+      })
+      .then(result => setplanets(result.data))
+      .catch(err => console.log(err));
+  
+      console.log(data)
+    }
+
+    const materialsPerPlanet = async() => {
+      const result = await axios ("https://cs340-spacecol-api.herokuapp.com/materialPerPlanet/" + specific, {
+        headers: { 'Content-Type': 'application/json'},
+      })
+      .then(result => setdata(result.data))
+      .catch(err => console.log(err));
+  
+      console.log(data)
+    }
+
+    const materialsPerNation = () => {
+      console.log(specific)
+
+      const result = axios ("https://cs340-spacecol-api.herokuapp.com/materialPerNation/" + specific, {
+        headers: { 'Content-Type': 'application/json'},
+      })
+      .then(result => setnationData(result.data))
+      .catch(err => console.log(err));
+  
+      console.log(data)
+    }
+
 
   const planetTable = () => {
     return <table className='resTable'>
@@ -30,25 +104,16 @@ const Materials = () => {
                 </tr>
               </thead>
 
-              {/* would map out data here */}
-              <tbody>
-                <tr>
-                  <td className='resItem'>adkvjnd</td>
-                  <td className='resItem'>3</td>
-                  <td className='resItem'>dafnvjvd</td>
-                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+              {data.map((item, idx) => (
+                <tr key={idx} className="text">
+                  <td className='resItem'>{item.materialName}</td>
+                  <td className='resItem'>{item.pricePer}</td>
+                  <td className='resItem'>{item.planetName}</td>
+                  <td><button className='btns' onClick={() => {redirToEdit(item.materialID)}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData(item.materialID)}}>delete</button></td>
                 </tr>
-              </tbody>
-              <tbody>
-                <tr>
-                  <td className='resItem'>adkvjnd</td>
-                  <td className='resItem'>3</td>
-                  <td className='resItem'>advnkvm</td>
-                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
-                </tr>
-              </tbody>
+              ))}
+              
           </table>
   }
 
@@ -63,34 +128,14 @@ const Materials = () => {
                 </tr>
               </thead>
 
-              {/* would map out data here */}
-              <tbody>
-                <tr>
-                  <td className='resItem'>Rubber</td>
-                  <td className='resItem'>6 lbs</td>
-                  <td className='resItem'>akvjd</td>
-                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+              {nationData.map((item, index) => (
+                <tr key={index} className="text">
+                  <td className='resItem'>{item.materialName}</td>
+                  <td className='resItem'>{item.pricePer}</td>
+                  <td><button className='btns' onClick={() => {redirToEdit(item.materialID)}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData(item.materialID)}}>delete</button></td>
                 </tr>
-              </tbody>
-              <tbody>
-                <tr>
-                  <td className='resItem'>Oil</td>
-                  <td className='resItem'>9 litters</td>
-                  <td className='resItem'>adhbvndjv</td>
-                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
-                </tr>
-              </tbody>
-              <tbody>
-                <tr>
-                  <td className='resItem'>Minerals</td>
-                  <td className='resItem'>3 oz</td>
-                  <td className='resItem'>adhbvndjv</td>
-                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
-                </tr>
-              </tbody>
+              ))}
           </table>
   }
 
@@ -106,49 +151,50 @@ const Materials = () => {
                 </tr>
               </thead>
 
-              {/* would map out data here */}
-              <tbody>
-                <tr>
-                  <td className='resItem'>adkvjnd</td>
-                  <td className='resItem'>3</td>
-                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+              {data.map((item, idx) => (
+                <tr key={idx} className="text">
+                  <td className='resItem'>{item.materialName}</td>
+                  <td className='resItem'>{item.pricePer}</td>
+                  <td><button className='btns' onClick={() => {redirToEdit(item.materialID)}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData(item.materialID)}}>delete</button></td>
                 </tr>
-              </tbody>
-              <tbody>
-                <tr>
-                  <td className='resItem'>adkvjnd</td>
-                  <td className='resItem'>3</td>
-                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
-                </tr>
-              </tbody>
+              ))}
           </table>
   }
 
   const specificData = () => {
     // API call for data -- output data
     if ((viewOpt == "nation" || viewOpt == "planet") && specific != "which") {
-      if (viewOpt == "nation") { return nationTable() }
-      else {return planetTable()}
+      if (viewOpt == "nation") {
+        materialsPerNation()
+        setspecific("which")
+        return nationTable() 
+      }
+      else {
+        materialsPerPlanet()
+        setspecific("which")
+        return planetTable()
+      }
     }
   }
 
   const viewingOpt = () => {
-    
+    console.log(viewOpt)
     if (viewOpt == 'nation') {
       // prompt user for nation with another dropdown
       return <div>
                 <div className="dropdownList">
                   <select className='dropdown' onChange={e => setspecific(e.target.value)} id ="viewOpt">
                   <option className='view'  defaultValue={'which'} value={"which"}>Pick a nation</option>
-                    <option className='view' value={"all"}>Canada</option>
-                    <option className='view'  value={"specific"}>Guatemala</option>
-                    <option className='view'  value={"specific"}>Mexico</option>
-                  </select>
+                    {nations.map((item, index) => (
+                  <option key={index} className='view'  value={item.nationID}>{item.nationName}</option>
+                ))}
+                </select>
                 </div>
                 
-                {specificData()}
+                {specific != "which"? materialsPerNation(): null}
+                {specific != "which"? setViewOpt("which"): null}
+                {specific != "which"? planetTable(): null}
              </div>
     }
     else if (viewOpt == 'planet' ) {
@@ -157,14 +203,15 @@ const Materials = () => {
                 <div className="dropdownList">
                   <select className='dropdown' onChange={e => setspecific(e.target.value)} id ="viewOpt">
                   <option className='view'  defaultValue={'which'} value={"which"}>Pick a planet</option>
-                    <option className='view' value={"can"}>Proxima Centauri b</option>
-                    <option className='view'  value={"mx"}>Anunnaki</option>
-                    <option className='view'  value={"mx"}>Proxima Centauri d</option>
-                    <option className='view'  value={"mx"}>Cancri e</option>
+                  {planets.map((item, index) => (
+                  <option key={index} className='view'  value={item.planetID}>{item.planetName}</option>
+                ))}
                   </select>
                 </div>
                 
-                {specificData()}
+                {specific != "which"? materialsPerNation(): null}
+                {specific != "which"? setViewOpt("which"): null}
+                {specific != "which"? planetTable(): null}
              </div>
     }
   
@@ -188,7 +235,7 @@ const Materials = () => {
           <option className='view'  value={"nation"}>View materials from a specific nation</option>
           <option className='view'  value={"planet"}>View materials from a specific planet</option>
         </select>
-        <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
+        <button className='btns adding' onClick={() => {history.push("/materialsadd")}}>+</button>
       </div>
 
       <div className='showingRes'>

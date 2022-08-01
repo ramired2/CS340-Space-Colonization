@@ -1,24 +1,56 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 const Nations = () => {
   const [viewOpt, setViewOpt] = useState("all");
   const [orderBy, setorderBy] = useState("asc");
 
-  const [data, setdata] = useState(null);
+  const [data, setdata] = useState([]);
+  // nationID, nationName, colonized, ships
+
+  const history = useHistory();
+
+  useEffect(() => {
+    allNations()
+  }, []);
   
 
-  const redirToEdit = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/nationsedit"
+  const redirToEdit = (id) => {
+    let link = "/nationsedit/" + id
+    history.push(link)
   }
 
-  const deleteData = (id) => {
+  const deleteData = async(id) => {
     // API call
     console.log("wants to delete id: ", id)
+
+    await axios.delete (`https://cs340-spacecol-api.herokuapp.com/deletenation/${id}`, {
+    headers: { 'Content-Type': 'application/json'}
+    })
+    .catch(err => console.log(err));
+    allNations()
   }
 
-  const redirToAdd = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/nationsadd"
-    
+  const allNations = async() => {
+    const result = await axios ("https://cs340-spacecol-api.herokuapp.com/allnations/" + orderBy, {
+      headers: { 'Content-Type': 'application/json'},
+    })
+    .then(result => setdata(result.data))
+    .catch(err => console.log(err));
+
+    console.log(data)
+  }
+
+  const getShips = async(shipStat) => {
+    console.log("order by ", orderBy)
+    const result = await axios ("https://cs340-spacecol-api.herokuapp.com/getOwnShips/" + orderBy + "/" + shipStat, {
+      headers: { 'Content-Type': 'application/json'},
+    })
+    .then(result => setdata(result.data))
+    .catch(err => console.log(err));
+
+    console.log(data)
   }
 
   const genFormat = () => {
@@ -33,35 +65,18 @@ const Nations = () => {
               </tr>
             </thead>
 
-            {/* would map out data here */}
-            <tbody>
-              <tr>
-                <td className='resItem'>Mexico</td>
-                <td className='resItem'>1</td>
-                <td className='resItem'>2</td>
-                <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+            {data.map((item, idx) => (
+              <tr key={idx} className="text">
+                    <td className='resItem'>{item.nationName}</td>
+                    <td className='resItem'>{item.shipQuantity}</td>
+                    <td className='resItem'>{item.conquestsQuantity}</td>
+                    <td><button className='btns' onClick={() => {redirToEdit(item.nationID)}}>edit</button></td>
+                    <td><button className='btns' onClick={() => {deleteData(item.nationID)}}>delete</button></td>
+              
               </tr>
-            </tbody>
-            <tbody>
-              <tr>
-                <td className='resItem'>Guatemala</td>
-                <td className='resItem'>1</td>
-                <td className='resItem'>1</td>
-                <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr>
-                <td className='resItem'>Canada</td>
-                <td className='resItem'>2</td>
-                <td className='resItem'>1</td>
-                <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
-              </tr>
-            </tbody>
-          </table>
+            ))}
+
+            </table>
   }
 
   const viewingOpt = () => {
@@ -70,22 +85,19 @@ const Nations = () => {
     // API call based on options chosen
     if (viewOpt == "all") {
       console.log("API call for all nations")
+      // allNations()
+      // console.log(data)
     }
     else if (viewOpt == "noShips"){
       console.log("API call for has no ships")
+      getShips("ns")
+      setViewOpt("all")
     }
     else if (viewOpt == "ships") {
       console.log("API call for has ships")
+      getShips("hs")
+      setViewOpt("all")
     }
-    else if (viewOpt == "hadColonized"){
-      console.log("API call for colonized planets")
-    }
-    else {
-      console.log("API call for no colonized planets")
-    }
-    
-    // return data depending on the option chosen
-    // HARD CODED DATA
       return genFormat()
   }
 
@@ -101,16 +113,16 @@ const Nations = () => {
           <option className='view' defaultValue={'all'} value={"all"}>View all Nations</option>
           <option className='view' value={"noShips"}>Nations without ships</option>
           <option className='view' value={"ships"}>Nations with ships</option>
-          <option className='view' value={"hasColonized"}>Nations without colonized planets</option>
-          <option className='view' value={"noColonized"}>Nations with colonized planets</option>
+          {/* <option className='view' value={"hasColonized"}>Nations without colonized planets</option>
+          <option className='view' value={"noColonized"}>Nations with colonized planets</option> */}
         </select>
 
         <select className='dropdown' onChange={e => setorderBy(e.target.value)} id ="viewOpt">
-          <option className='view' defaultValue={'orderby'} value={"orderby"}>Order by</option>
+          <option className='view' defaultValue={'asc'} value={"orderby"}>Order by</option>
           <option className='view' value={"asc"}>Ascending</option>
           <option className='view' value={"desc"}>Descending</option>
         </select>
-        <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
+        <button className='btns adding' onClick={() => {history.push("/nationsadd")}}>+</button>
       </div>
 
       <div className='showingRes'>

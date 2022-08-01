@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
+import { useHistory } from "react-router-dom";
 
 const Ships = () => {
   const [viewOpt, setViewOpt] = useState("all");
   const [nation, setNation] = useState("which");
   // console.log(viewOpt)
 
-  const redirToEdit = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/shipsedit"
-  }
+  
+  const history = useHistory();
+  
 
-  const redirToAdd = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/shipsadd"
-    
+  const redirToEdit = (id) => {
+    history.push("/shipsedit/" + id)
   }
 
   const deleteData = (id) => {
@@ -119,7 +119,7 @@ const Ships = () => {
           <option className='view'  defaultValue={'all'} value={"all"}>View all ships</option>
           <option className='view'  value={"specific"}>View Ships from a specific nation</option>
         </select>
-        <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
+        <button className='btns adding' onClick={() => {history.push("/shipsadd")}}>+</button>
       </div>
 
       <div className='showingRes'>

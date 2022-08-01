@@ -1,37 +1,43 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useHistory } from "react-router-dom";
-// import axios from 'axios';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const AddMaterials = (props) => {
+const AddMaterials = () => {
 //   const [parent, setParent] = useState("");
 //   const [planetID, setplanetID] = useState(null);
   const [name, setName] = useState("");
-  const [planetID, setplanetID] = useState("");
   const [value, setvalue] = useState(null);
   const [units, setunits] = useState(null);
 
-//   // return page
-  let link = "https://cs340-space-colonization.herokuapp.com/materials"
+  const [tonatl, settonatl] = useState(false);
 
-//   const history_ = useHistory();
+
+//   // return page
+  let link = "/materials"
+
+  const history = useHistory();
 
 //   // API call for creating a new tree
   const createEmpty = async(e) => {
 
-//     e.preventDefault();
-//     // await axios.post('http://localhost:5000/', {
-//     //   method:'POST',
-//     //   headers: { 'Content-Type': 'application/json'},
-//     //   planetID: planetID, // props
-//     //   name: name,   
-//     //   distance: distance,
-//     //   value: value,
-//      //  units: units
-//     // });
+    e.preventDefault();
+    await axios.post('https://cs340-spacecol-api.herokuapp.com/addmaterial', {
+      method:'POST',
+      headers: { 'Content-Type': 'application/json'},
+      name: name,   
+      value: value,
+      units: units
+    });
     
 //     // redirects user back to their works page
-//     window.location.href="https://cs340-space-colonization.herokuapp.com/materials"
+    if (tonatl == false) {
+      history.push(link);
+    }
+    else {
+      history.push("/natladd");
+    }
+    
   }
 
 
@@ -47,9 +53,10 @@ const AddMaterials = (props) => {
           <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Value" name="0" value={value} onChange={(e) => setvalue(e.target.value)}/></div>
           <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Units" name="0" value={units} onChange={(e) => setunits(e.target.value)}/></div>
         </div>
+        <button className="btns indivItem formItem" type="submit" onClick={() => {settonatl(true)}}>Add material and go to add a new natural resource</button>
         <div className='buttonsInline'>
-          <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/materials"}}>Back</button>
-          <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Add system</button>
+          <button className='btns indivItem formItem' onClick={() => {history.push(link);}}>Back</button>
+          <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Add material</button>
         </div>
       </form>
       

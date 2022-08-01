@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useHistory } from "react-router-dom";
-// import axios from 'axios';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const EditNations = (props) => {
+const EditShips = (props) => {
 //   const [parent, setParent] = useState("");
 //   const [nationID, setNationID] = useState(null);
   const [name, setName] = useState("");
@@ -11,26 +11,28 @@ const EditNations = (props) => {
   const [speed, setSpeed] = useState(null);
   const [capacity, setCapacity] = useState(null);
 
-//   // return page
-  let link = "https://cs340-space-colonization.herokuapp.com/ships"
+  const id = props.match.params.id;
 
-//   const history_ = useHistory();
+//   // return page
+  let link = "/ships"
+
+  const history = useHistory();
 
 //   // API call for creating a new tree
   const createEmpty = async(e) => {
 
-//     e.preventDefault();
-//     // await axios.post('http://localhost:5000/', {
-//     //   method:'POST',
-//     //   headers: { 'Content-Type': 'application/json'},
-//     //   nationID: nationID, // props
-//     //   name: name,   
-//     //   speed: speed,
-//     //   capacity: capacity,
-//     // });
+    e.preventDefault();
+    await axios.post('https://cs340-spacecol-api.herokuapp.com/', {
+      method:'POST',
+      headers: { 'Content-Type': 'application/json'},
+      nationID: id, // props
+      name: name,   
+      speed: speed,
+      capacity: capacity,
+    });
     
 //     // redirects user back to their works page
-//     window.location.href="https://cs340-space-colonization.herokuapp.com/ships"
+        history.push(link);
   }
 
 
@@ -53,7 +55,7 @@ const EditNations = (props) => {
           <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Ship capacity" name="0" value={capacity} onChange={(e) => setCapacity(e.target.value)}/></div>
         </div>
         <div className='buttonsInline'>
-          <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/ships"}}>Back</button>
+          <button className='btns indivItem formItem' onClick={() => {history.push(link);}}>Back</button>
           <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Edit Ship</button>
         </div>
       </form>
@@ -63,4 +65,4 @@ const EditNations = (props) => {
 }
 
 
-export default EditNations;
+export default EditShips;

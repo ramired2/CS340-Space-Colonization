@@ -72,14 +72,14 @@ function App() {
           <Route exact path="/prodadd" component={AddProduced} />
 
           {/* edit pages */}
-          <Route exact path="/nationsedit" component={EditNations} />
-          <Route exact path="/shipsedit" component={EditShips} />
-          <Route exact path="/startypesedit" component={EditStarTypes} />
-          <Route exact path="/starsystemsedit" component={EditSystems} />
-          <Route exact path="/materialsedit" component={EditMaterials} />
-          <Route exact path="/planetsedit" component={EditPlanets} />
-          <Route exact path="/natledit" component={EditNatlResources} />
-          <Route exact path="/prodedit" component={EditProduced} />
+          <Route exact path="/nationsedit/:id" component={EditNations} render={(id) => <EditNations {...id}/>}/>
+          <Route exact path="/shipsedit/:id" component={EditShips} render={(id) => <EditShips {...id}/>}/>
+          <Route exact path="/startypesedit/:id" component={EditStarTypes} render={(id) => <EditStarTypes {...id}/>}/>
+          <Route exact path="/starsystemsedit/:id" component={EditSystems} render={(id) => <EditSystems {...id}/>}/>
+          <Route exact path="/materialsedit/:id" component={EditMaterials} render={(id) => <EditMaterials {...id}/>}/>
+          <Route exact path="/planetsedit/:id" component={EditPlanets} render={(id) => <EditPlanets {...id}/>}/>
+          <Route exact path="/natledit/:id" component={EditNatlResources} render={(id) => <EditNatlResources {...id}/>}/>
+          <Route exact path="/prodedit/:id" component={EditProduced} render={(id) => <EditProduced {...id}/>}/>
         </Switch>
       </Router>
     </div>

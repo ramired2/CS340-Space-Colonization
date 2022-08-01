@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useHistory } from "react-router-dom";
-// import axios from 'axios';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const EditProduced = (props) => {
@@ -9,29 +9,31 @@ const EditProduced = (props) => {
   const [name, setName] = useState("");
   const [materialID, setmaterialID] = useState("");
   const [planetID, setplanetID] = useState("");
-  const [prodQuantity, setprodQuantity] = useState(null);
+  const [prodQuantity, setprodQuantity] = useState("");
+
+  const id = props.match.params.id;
 
 //   // return page
-  let link = "https://cs340-space-colonization.herokuapp.com/produced"
+  let link = "/produced"
 
-//   const history_ = useHistory();
+  const history = useHistory();
 
 //   // API call for creating a new tree
   const createEmpty = async(e) => {
 
-//     e.preventDefault();
-//     // await axios.post('http://localhost:5000/', {
-//     //   method:'POST',
-//     //   headers: { 'Content-Type': 'application/json'},
-//     //   prodID: prodID, // props
-//     //   name: name,   
-//     //   materialID: materialID,
-//     //   planetID: planetID,
-//      //  prodQuantity: prodQuantity
-//     // });
+    e.preventDefault();
+    await axios.post('https://cs340-spacecol-api.herokuapp.com/', {
+      method:'POST',
+      headers: { 'Content-Type': 'application/json'},
+      prodID: id, // props
+      name: name,   
+      materialID: materialID,
+      planetID: planetID,
+      prodQuantity: prodQuantity
+    });
     
 //     // redirects user back to their works page
-//     window.location.href="https://cs340-space-colonization.herokuapp.com/produced"
+      history.push(link);
   }
 
 
@@ -59,7 +61,7 @@ const EditProduced = (props) => {
           <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Quantity" min = "0" value={prodQuantity} onChange={(e) => setprodQuantity(e.target.value)}/></div>
         </div>
         <div className='buttonsInline'>
-          <button className='btns indivItem formItem' onClick={() => {window.location.href="https://cs340-space-colonization.herokuapp.com/produced"}}>Back</button>
+          <button className='btns indivItem formItem' onClick={() => {history.push(link);}}>Back</button>
           <button className="btns indivItem formItem" type="submit"  /* onClick={/* handleAddPerson } */>Edit Produced Material</button>
         </div>
       </form>

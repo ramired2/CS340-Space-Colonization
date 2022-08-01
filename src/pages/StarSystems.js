@@ -1,23 +1,23 @@
 import React, {useState} from 'react';
+import { useHistory } from "react-router-dom";
+
+
 
 const StarSystems = () => {
   const [viewOpt, setViewOpt] = useState("all");
   const [distance, setdistance] = useState(null);
   // console.log(viewOpt)
+  
+  const history = useHistory();
 
-  const redirToEdit = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/starsystemsedit"
+  const redirToEdit = (id) => {
+      history.push("/starsystemsedit/" + id)
   }
 
   const deleteData = (id) => {
     // API call
     console.log("wants to delete id: ", id)
   }
-
-  const redirToAdd = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/materialsadd"
-  }
-
   const genFormat = () => {
     return <table className='resTable'>
               <thead>
@@ -108,7 +108,7 @@ const StarSystems = () => {
           <option className='view'  defaultValue={'all'} value={"all"}>View all star systems</option>
           <option className='view'  value={"specific"}>Minimum distance from Sol</option>
         </select>
-        <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
+        <button className='btns adding' onClick={() => {history.push("/materialsadd")}}>+</button>
       </div>
 
       <div className='showingRes'>

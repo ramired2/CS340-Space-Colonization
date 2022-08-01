@@ -1,21 +1,21 @@
 import React, {useState} from 'react';
+import { useHistory } from "react-router-dom";
+  
+
 
 const StarTypes  = () => {
   const [viewOpt, setViewOpt] = useState("all");
   // console.log(viewOpt)
+  
+  const history = useHistory();
 
-  const redirToEdit = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/startypesedit"
+  const redirToEdit = (id) => {
+      history.push("/startypesedit/" + id)
   }
 
   const deleteData = (id) => {
     // API call
     console.log("wants to delete id: ", id)
-  }
-
-  const redirToAdd = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/startypesadd"
-    
   }
 
   const genFormat = () => {
@@ -69,7 +69,7 @@ const StarTypes  = () => {
         <select className='dropdown' value ={"all"} id ="viewOpt">
           <option className='view' defaultValue={'all'} value={"all"}>View all star types</option>
         </select>
-        <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
+        <button className='btns adding' onClick={() => {history.push("/startypesadd")}}>+</button>
       </div>
 
       <div className='showingRes'>

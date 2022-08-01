@@ -1,23 +1,70 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useHistory } from "react-router-dom";
+import axios from 'axios';
 
 const NatlResources = () => {
   const [viewOpt, setViewOpt] = useState("all");
   const [specific, setspecific] = useState("which");
+
+  const [data, setdata] = useState([]);
+  const [planetDropdown, setplanetDropdown] = useState([]);
+  const [nationDropdown, setnationDropdown] = useState([]);
   // console.log(viewOpt)
 
-  const redirToEdit = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/natledit"
+  const history = useHistory();
+
+  useEffect(() => {
+    allnatl()
+    dropddownPlanets()
+    dropddownNations()
+  }, []);
+
+  const redirToEdit = (id) => {
+    history.push("/natledit/" + id)
   }
 
-  const deleteData = (id) => {
+  const deleteData = async(id) => {
     // API call
     console.log("wants to delete id: ", id)
+
+    await axios.delete (`https://cs340-spacecol-api.herokuapp.com/deleteNatl/${id}`, {
+    headers: { 'Content-Type': 'application/json'}
+    })
+    .catch(err => console.log(err));
+    allnatl()
   }
 
-  const redirToAdd = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/natladd"
-    
+  const allnatl = async() => {
+    const result = await axios ("https://cs340-spacecol-api.herokuapp.com/allnatl", {
+      headers: { 'Content-Type': 'application/json'},
+    })
+    .then(result => setdata(result.data))
+    .catch(err => console.log(err));
+
+    console.log(data)
   }
+
+  // dropdown planets
+  const dropddownPlanets = async() => {
+    const result = await axios ("https://cs340-spacecol-api.herokuapp.com/dropdownPlanets", {
+      headers: { 'Content-Type': 'application/json'},
+    })
+    .then(result => setplanetDropdown(result.data))
+    .catch(err => console.log(err));
+
+    console.log(planetDropdown)
+  }
+
+     // dropdown nations
+     const dropddownNations = async() => {
+      const result = await axios ("/dropdownNations", {
+        headers: { 'Content-Type': 'application/json'},
+      })
+      .then(result => setnationDropdown(result.data))
+      .catch(err => console.log(err));
+  
+      console.log(nationDropdown)
+    }
 
   const genFormat = () => {
     return <table className='resTable'>
@@ -31,43 +78,16 @@ const NatlResources = () => {
                 </tr>
               </thead>
 
-              {/* would map out data here */}
-              <tbody>
-                <tr>
-                  <td className='resItem'>rubber</td>
-                  <td className='resItem'>Anunnaki</td>
-                  <td className='resItem'>2</td>
-                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
+              {data.map((item, idx) => (
+              <tr key={idx} className="text">
+                  <td className='resItem'>{item.materialName}</td>
+                  <td className='resItem'>{item.planetName}</td>
+                  <td className='resItem'>{item.natlQuantity}</td>
+                  <td><button className='btns' onClick={() => {redirToEdit(item.natlResourcesID)}}>edit</button></td>
+                  <td><button className='btns' onClick={() => {deleteData(item.natlResourcesID)}}>delete</button></td>
                 </tr>
-              </tbody>
-              <tbody>
-                <tr>
-                  <td className='resItem'>Minerals</td>
-                  <td className='resItem'>Anunnaki</td>
-                  <td className='resItem'>4</td>
-                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
-                </tr>
-              </tbody>
-              <tbody>
-                <tr>
-                  <td className='resItem'>Rubber</td>
-                  <td className='resItem'>Cancri e</td>
-                  <td className='resItem'>0</td>
-                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
-                </tr>
-              </tbody>
-              <tbody>
-                <tr>
-                  <td className='resItem'>Minerals</td>
-                  <td className='resItem'>Proxima Centauri d</td>
-                  <td className='resItem'>0</td>
-                  <td><button className='btns' onClick={() => {redirToEdit()}}>edit</button></td>
-                  <td><button className='btns' onClick={() => {deleteData()}}>delete</button></td>
-                </tr>
-              </tbody>
+              ))}
+              
           </table>
   }
 
@@ -89,8 +109,9 @@ const NatlResources = () => {
                 <div className="dropdownList">
                   <select className='dropdown' onChange={e => setspecific(e.target.value)} id ="viewOpt">
                   <option className='view'  defaultValue={'which'} value={"which"}>Pick a nation</option>
-                    <option className='view' value={"can"}>Canada</option>
-                    <option className='view'  value={"mx"}>MX</option>
+                  {nationDropdown.map((item, index) => (
+                      <option key={index} className='indivItem formItem' value={item.nationID} >{item.nationName}</option>
+                    ))}
                   </select>
                 </div>
                 
@@ -104,8 +125,9 @@ const NatlResources = () => {
               <div className="dropdownList">
                 <select className='dropdown' onChange={e => setspecific(e.target.value)} id ="viewOpt">
                 <option className='view'  defaultValue={'which'} value={"which"}>Pick a planet</option>
-                  <option className='view' value={"can"}>Venus</option>
-                  <option className='view'  value={"mx"}>Mars</option>
+                {planetDropdown.map((item, index) => (
+                      <option key={index} className='indivItem formItem' value={item.planetID} >{item.planetName}</option>
+                    ))}
                 </select>
               </div>
               
@@ -135,7 +157,7 @@ const NatlResources = () => {
           <option className='view'  value={"nations"}>Resources from a specific nation</option>
           <option className='view'  value={"materials"}>Resources by planets</option>
         </select>
-        <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
+        <button className='btns adding' onClick={() => {history.push("/natladd")}}>+</button>
       </div>
 
       <div className='showingRes'>

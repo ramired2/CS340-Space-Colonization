@@ -1,22 +1,22 @@
 import React, {useState} from 'react';
+import { useHistory } from "react-router-dom";
 
 const ProducedMaterials = () => {
   const [viewOpt, setViewOpt] = useState("all");
   const [specific, setspecific] = useState("which");
   // console.log(viewOpt)
 
-  const redirToEdit = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/prodedit"
+  const history = useHistory();
+
+  
+
+  const redirToEdit = (id) => {
+    history.push("/prodedit/" + id)
   }
 
   const deleteData = (id) => {
     // API call
     console.log("wants to delete id: ", id)
-  }
-
-  const redirToAdd = () => {
-    window.location.href="https://cs340-space-colonization.herokuapp.com/prodadd"
-    
   }
 
   const genFormat = () => {
@@ -122,11 +122,11 @@ const ProducedMaterials = () => {
 
       <div className="dropdownList">
         <select className='dropdown' onChange={e => setViewOpt(e.target.value)} id ="viewOpt">
-          <option className='view'  defaultValue={'all'} value={"all"}>View all planets</option>
+          <option className='view'  defaultValue={'all'} value={"all"}>View all Produced Materials</option>
           <option className='view'  value={"nations"}>Produced materials from a specific nation</option>
           <option className='view'  value={"materials"}>Produced materials from a planet</option>
         </select>
-        <button className='btns adding' onClick={() => {redirToAdd()}}>+</button>
+        <button className='btns adding' onClick={() => {history.push("/prodadd")}}>+</button>
       </div>
 
       <div className='showingRes'>
