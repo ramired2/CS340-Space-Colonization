@@ -31,7 +31,7 @@ const EditNatlResources = (props) => {
   const createEmpty = async(e) => {
 
     e.preventDefault();
-    await axios.post('http://localhost:5000/editnatl', {
+    await axios.post('https://cs340-spacecol-api.herokuapp.com/editnatl', {
       method:'POST',
       headers: { 'Content-Type': 'application/json'},
       natlID: id, // props
@@ -45,7 +45,7 @@ const EditNatlResources = (props) => {
   }
 
   const preload = async() => {
-    await axios ('http://localhost:5000/getnatlsbyID/'+ id, {
+    await axios ('https://cs340-spacecol-api.herokuapp.com/'+ id, {
       method:'GET',
       headers: { 'Content-Type': 'application/json'},
     }).then(result => {
