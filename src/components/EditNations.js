@@ -10,10 +10,16 @@ const EditNations = (props) => {
   const [numCol, setNumCol] = useState("");
   const [numShip, setNumShip] = useState("");
 
+  const [retreived, setretreived] = useState(false);
+
 //   // return page
   let link = "/nations"
 
   const id = props.match.params.id;
+
+  useEffect(() => {
+    preload();
+  }, []);
 
   const history = useHistory();
 
@@ -21,7 +27,7 @@ const EditNations = (props) => {
   const createEmpty = async(e) => {
 
     e.preventDefault();
-    await axios.post('https://cs340-spacecol-api.herokuapp.com/editnation', {
+    await axios.post('http://localhost:5000/editnation', {
       method:'POST',
       headers: { 'Content-Type': 'application/json'},
       nationID: id, 
@@ -33,6 +39,20 @@ const EditNations = (props) => {
 //     // redirects user back to their works page
     history.push(link);
   }
+
+  const preload = async() => {
+    await axios ('http://localhost:5000/getnationsbyID/'+ id, {
+      method:'GET',
+      headers: { 'Content-Type': 'application/json'},
+    }).then(result => {
+
+      setName(result.data[0]['nationName'])
+      setNumShip(result.data[0]['shipQuantity'])
+      setNumCol(result.data[0]['conquestsQuantity'])
+
+    })
+    .catch(err => console.log(err));
+  };
 
 
   return (

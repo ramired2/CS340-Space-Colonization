@@ -9,12 +9,16 @@ const EditPlanets = (props) => {
       const [ownerID, setownerID] = useState("");
       const [systemID, setsystemID] = useState("");
 
+      const [ownername, setownername] = useState("");
+      const [systemname, setsystemname] = useState("");
+
       const [nationDropdown, setnationDropdown] = useState([]);
       const [systemDropdown, setsystemDropdown] = useState([]);
 
       useEffect(() => {
         dropddownNations()
         dropdownSations()
+        preload();
       }, []);
 
     
@@ -22,13 +26,17 @@ const EditPlanets = (props) => {
       let link = "/planets"
       
       const id = props.match.params.id;
-      let getLink = '/editplanet/' + id
+      let getLink = 'http://localhost:5000/editplanet/' + id
       const history = useHistory();
     
     //   // API call for creating a new tree
     const createEmpty = async(e) => {
+
+      console.log("sys id is ")
+      console.log(systemID)
+
       e.preventDefault();
-      await axios.post("/editplanet", {
+      await axios.post("http://localhost:5000/editplanet", {
           method:'POST',
           headers: { 'Content-Type': 'application/json'},
           planetID: id,
@@ -42,9 +50,29 @@ const EditPlanets = (props) => {
         history.push(link);
       }
 
+      const preload = async() => {
+        await axios ('http://localhost:5000/getplsnetsbyID/'+ id, {
+          method:'GET',
+          headers: { 'Content-Type': 'application/json'},
+        }).then(result => {
+    
+          setname(result.data[0]['planetName'])
+          setcolonized(result.data[0]['nationName'])
+          setownerID(result.data[0]['nationID'])
+          setsystemID(result.data[0]['systemID'])
+
+          setownername(result.data[0]['nationName'])
+          setsystemname(result.data[0]['systemName'])
+
+          console.log(result.data[0])
+    
+        })
+        .catch(err => console.log(err));
+      };
+
       // dropdown system IDS
       const dropdownSations = async() => {
-        const result = await axios ("/dropdownsystems", {
+        const result = await axios ("http://localhost:5000/dropdownsystems", {
           headers: { 'Content-Type': 'application/json'},
         })
         .then(result => setsystemDropdown(result.data))
@@ -55,7 +83,7 @@ const EditPlanets = (props) => {
 
       // dropdown nations
       const dropddownNations = async() => {
-        const result = await axios ("/dropdownNations", {
+        const result = await axios ("http://localhost:5000/dropdownNations", {
           headers: { 'Content-Type': 'application/json'},
         })
         .then(result => setnationDropdown(result.data))
@@ -69,27 +97,28 @@ const EditPlanets = (props) => {
           <form id="target" action={link} encType="multipart/form-data" onSubmit={createEmpty}>
             <label className='subtopic text'>Edit a Planet</label>
             <div className='formContainer'>
-              <div><input className='indivItem formItem' /* ref={parentRef} */ type="text" placeholder="Planet Name" value={name} onChange={(e) => setname(e.target.value)}/></div>
+              <div><input className='indivItem formItem' type="text" placeholder="Planet Name" value={name} onChange={(e) => setname(e.target.value)}/></div>
             </div>
             <div className='dropdownList editAddbtn'>
                 <select id = "ownerID" className='dropdown' onChange={(e) => setownerID(e.target.value)}>
-                    <option className='indivItem formItem' value={"NULL"} >Planet Owner</option>
-                    {/* <option className='indivItem formItem' value={"empty"} >Remove Current Nation</option> */}
+                    <option className='indivItem formItem' value={ownerID} >{ownername == null? "no owner": ownername}</option>
+                    <option className='indivItem formItem' value={0} >{"Remove owner"}</option>
                     {nationDropdown.map((item, index) => (
                       <option key={index} className='indivItem formItem' value={item.nationID} >{item.nationName}</option>
                     ))}
                 </select>
             </div>
             <div className='dropdownList editAddbtn'>
+                    {/* <label>Colonized Status: </label> */}
                     <select id = "colonizedStat" className='dropdown' onChange={(e) => setcolonized(e.target.value)}>
-                        <option className='indivItem formItem' value={"empty"} >Colonized Status</option>
-                        <option className='indivItem formItem' value={1} >Yes</option>
-                        <option className='indivItem formItem' value={0} >No</option>
+                    <option className='indivItem formItem' value={colonized} >{colonized == 1? "no" : "yes"}</option>
+                        <option className='indivItem formItem' value={1} >yes</option>
+                      <option className='indivItem formItem' value={0} >no</option>
                     </select>
             </div>
             <div className='dropdownList editAddbtn'>
                     <select id = "ownerID" className='dropdown' onChange={(e) => setsystemID(e.target.value)}>
-                        <option className='indivItem formItem' value={"empty"} >Star System</option>
+                        <option className='indivItem formItem' value={systemID} >{systemname}</option>
                         {systemDropdown.map((item, idx) => (
                           <option key={idx} className='indivItem formItem' value={item.systemID} >{item.systemName}</option>
                         ))}

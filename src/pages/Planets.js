@@ -35,7 +35,7 @@ const Planets = () => {
   }
 
   const allPlanets = async() => {
-    const result = await axios ("https://cs340-spacecol-api.herokuapp.com/allplanets", {
+    const result = await axios ("http://localhost:5000/allplanets", {
       headers: { 'Content-Type': 'application/json'},
     })
     .then(result => setdata(result.data))
@@ -93,9 +93,9 @@ const Planets = () => {
               {data.map((item, idx) => (
               <tr key={idx} className="text">
                   <td className='resItem'>{item.planetName}</td>
-                  <td className='resItem'>{item.nationName}</td>
+                  <td className='resItem'>{item.nationName == "" || item.nationName == null? "-": item.nationName}</td>
                   <td className='resItem'>{item.systemName}</td>
-                  <td className='resItem'>{item.colonized == 1? "yes":"no"}</td>
+                  <td className='resItem'>{item.colonized == 1? "no":"yes"}</td>
                   <td><button className='btns' onClick={() => {redirToEdit(item.planetID)}}>edit</button></td>
                   <td><button className='btns' onClick={() => {deleteData(item.planetID)}}>delete</button></td>
                 </tr>

@@ -28,7 +28,7 @@ const AddPlanets = () => {
     const createEmpty = async(e) => {
   
       e.preventDefault();
-      await axios.post('https://cs340-spacecol-api.herokuapp.com/addplanet', {
+      await axios.post('http://localhost:5000/addplanet', {
         method:'POST',
         headers: { 'Content-Type': 'application/json'},
         nationID: ownerID,

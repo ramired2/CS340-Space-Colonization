@@ -57,7 +57,7 @@ const NatlResources = () => {
 
      // dropdown nations
      const dropddownNations = async() => {
-      const result = await axios ("/dropdownNations", {
+      const result = await axios ("https://cs340-spacecol-api.herokuapp.com/dropdownNations", {
         headers: { 'Content-Type': 'application/json'},
       })
       .then(result => setnationDropdown(result.data))

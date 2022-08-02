@@ -4,10 +4,12 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const EditNatlResources = (props) => {
-  const [name, setName] = useState("");
   const [materialID, setmaterialID] = useState("");
   const [planetID, setplanetID] = useState("");
   const [natlQuantity, setnatlQuantity] = useState(10000);
+
+  const [materialname, setmaterialname] = useState("");
+  const [planetname, setplanetname] = useState("");
 
   const [planetDropdown, setplanetDropdown] = useState([]);
   const [materialsdropdown, setmaterialsdropdown] = useState([]);
@@ -15,6 +17,7 @@ const EditNatlResources = (props) => {
   useEffect(() => {
     dropddownPlanets()
     dropddownMaterials()
+    preload();
   }, []);
 
   const id = props.match.params.id;
@@ -28,7 +31,7 @@ const EditNatlResources = (props) => {
   const createEmpty = async(e) => {
 
     e.preventDefault();
-    await axios.post('https://cs340-spacecol-api.herokuapp.com/editnatl', {
+    await axios.post('http://localhost:5000/editnatl', {
       method:'POST',
       headers: { 'Content-Type': 'application/json'},
       natlID: id, // props
@@ -40,6 +43,23 @@ const EditNatlResources = (props) => {
     // redirects user back to their works page
     history.push(link)
   }
+
+  const preload = async() => {
+    await axios ('http://localhost:5000/getnatlsbyID/'+ id, {
+      method:'GET',
+      headers: { 'Content-Type': 'application/json'},
+    }).then(result => {
+
+      setmaterialID(result.data[0]['materialID'])
+      setplanetID(result.data[0]['planetID'])
+      setnatlQuantity(result.data[0]['natlQuantity'])
+
+      setmaterialname(result.data[0]['materialName'])
+      setplanetname(result.data[0]['planetName'])
+
+    })
+    .catch(err => console.log(err));
+  };
 
   // dropdown planets
   const dropddownPlanets = async() => {
@@ -71,7 +91,7 @@ const EditNatlResources = (props) => {
         <div className='formContainer'>
           <div className='dropdownList editAddbtn'>
                 <select id = "materialID" className='dropdown' onChange={(e) => setmaterialID(e.target.value)}>
-                <option className='indivItem formItem' value={null} >Material</option>
+                <option className='indivItem formItem' value={materialID} >{materialname}</option>
                   {materialsdropdown.map((item, idx) => (
                         <option key={idx} className='indivItem formItem' value={item.materialID} >{item.materialName}</option>
                       ))}
@@ -79,7 +99,7 @@ const EditNatlResources = (props) => {
           </div>
           <div className='dropdownList editAddbtn'>
           <select id = "planetID" className='dropdown' onChange={(e) => setplanetID(e.target.value)}>
-                <option className='indivItem formItem' value={null} >Planet</option>
+                <option className='indivItem formItem' value={planetID} >{planetname}</option>
                 {planetDropdown.map((item, index) => (
                       <option key={index} className='indivItem formItem' value={item.planetID} >{item.planetName}</option>
                     ))}

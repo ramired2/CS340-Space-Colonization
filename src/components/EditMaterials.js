@@ -4,13 +4,15 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const EditMaterials = (props) => {
-//   const [parent, setParent] = useState("");
-//   const [materialID, setmaterialID] = useState(null);
   const [name, setName] = useState("");
   const [value, setvalue] = useState("");
   const [units, setunits] = useState("");
 
   const id = props.match.params.id;
+
+  useEffect(() => {
+    preload();
+  }, []);
 
 //   // return page
   let link = "/materials"
@@ -21,7 +23,7 @@ const EditMaterials = (props) => {
   const createEmpty = async(e) => {
 
     e.preventDefault();
-    await axios.post('https://cs340-spacecol-api.herokuapp.com/editmaterial', {
+    await axios.post('http://localhost:5000/editmaterial', {
       method:'POST',
       headers: { 'Content-Type': 'application/json'},
       materialID: id, // props
@@ -34,8 +36,19 @@ const EditMaterials = (props) => {
     history.push(link);
   }
 
+  const preload = async() => {
+    await axios ('http://localhost:5000/getmatlsbyID/'+ id, {
+      method:'GET',
+      headers: { 'Content-Type': 'application/json'},
+    }).then(result => {
 
-  const parentRef = useRef()
+      setName(result.data[0]['materialName'])
+      setvalue(result.data[0]['value'])
+      setunits(result.data[0]['units'])
+
+    })
+    .catch(err => console.log(err));
+  };
 
 
   return (
@@ -43,9 +56,9 @@ const EditMaterials = (props) => {
       <form id="target" action={link} encType="multipart/form-data" onSubmit={createEmpty}>
         <label className='subtopic text'>Edit a Material</label>
         <div className='formContainer'>
-          <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="System Name" name="Ship Name" value={name} onChange={(e) => setName(e.target.value)}/></div>
-          <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Value" name="0" value={value} onChange={(e) => setvalue(e.target.value)}/></div>
-          <div><input className='indivItem formItem' ref={parentRef} type="text" placeholder="Units" name="0" value={units} onChange={(e) => setunits(e.target.value)}/></div>
+          <div><input className='indivItem formItem' type="text" defaultValue = {name} value = {name} name = "oof" placeholder="Material Name" onChange={(e) => setName(e.target.value)}/></div>
+          <div><input className='indivItem formItem' type="text" defaultValue = {value} value = {value}  name = "oof" placeholder="Value" onChange={(e) => setvalue(e.target.value)}/></div>
+          <div><input className='indivItem formItem' type="text" defaultValue = {units} value = {units}  name = "oof" placeholder="Units" onChange={(e) => setunits(e.target.value)}/></div>
         </div>
         <div className='buttonsInline'>
           <button className='btns indivItem formItem' onClick={() => {history.push(link);}}>Back</button>
