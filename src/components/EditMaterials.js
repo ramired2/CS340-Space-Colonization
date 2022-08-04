@@ -23,7 +23,7 @@ const EditMaterials = (props) => {
   const createEmpty = async(e) => {
 
     e.preventDefault();
-    await axios.post('http://localhost:5000/editmaterial', {
+    await axios.post('https://cs340-spacecol-api.herokuapp.com/editmaterial', {
       method:'POST',
       headers: { 'Content-Type': 'application/json'},
       materialID: id, // props
@@ -37,7 +37,7 @@ const EditMaterials = (props) => {
   }
 
   const preload = async() => {
-    await axios ('http://localhost:5000/getmatlsbyID/'+ id, {
+    await axios ('https://cs340-spacecol-api.herokuapp.com/getmatlsbyID/'+ id, {
       method:'GET',
       headers: { 'Content-Type': 'application/json'},
     }).then(result => {

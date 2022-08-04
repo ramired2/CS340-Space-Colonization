@@ -27,7 +27,7 @@ const EditNations = (props) => {
   const createEmpty = async(e) => {
 
     e.preventDefault();
-    await axios.post('http://localhost:5000/editnation', {
+    await axios.post('https://cs340-spacecol-api.herokuapp.com/editnation', {
       method:'POST',
       headers: { 'Content-Type': 'application/json'},
       nationID: id, 
@@ -41,7 +41,7 @@ const EditNations = (props) => {
   }
 
   const preload = async() => {
-    await axios ('http://localhost:5000/getnationsbyID/'+ id, {
+    await axios ('https://cs340-spacecol-api.herokuapp.com/getnationsbyID/'+ id, {
       method:'GET',
       headers: { 'Content-Type': 'application/json'},
     }).then(result => {

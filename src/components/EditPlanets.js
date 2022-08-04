@@ -26,7 +26,7 @@ const EditPlanets = (props) => {
       let link = "/planets"
       
       const id = props.match.params.id;
-      let getLink = 'http://localhost:5000/editplanet/' + id
+      let getLink = 'https://cs340-spacecol-api.herokuapp.com/editplanet/' + id
       const history = useHistory();
     
     //   // API call for creating a new tree
@@ -36,7 +36,7 @@ const EditPlanets = (props) => {
       console.log(systemID)
 
       e.preventDefault();
-      await axios.post("http://localhost:5000/editplanet", {
+      await axios.post("https://cs340-spacecol-api.herokuapp.com/editplanet", {
           method:'POST',
           headers: { 'Content-Type': 'application/json'},
           planetID: id,
@@ -51,7 +51,7 @@ const EditPlanets = (props) => {
       }
 
       const preload = async() => {
-        await axios ('http://localhost:5000/getplsnetsbyID/'+ id, {
+        await axios ('https://cs340-spacecol-api.herokuapp.com/getplsnetsbyID/'+ id, {
           method:'GET',
           headers: { 'Content-Type': 'application/json'},
         }).then(result => {
@@ -72,7 +72,7 @@ const EditPlanets = (props) => {
 
       // dropdown system IDS
       const dropdownSations = async() => {
-        const result = await axios ("http://localhost:5000/dropdownsystems", {
+        const result = await axios ("https://cs340-spacecol-api.herokuapp.com/dropdownsystems", {
           headers: { 'Content-Type': 'application/json'},
         })
         .then(result => setsystemDropdown(result.data))
@@ -83,7 +83,7 @@ const EditPlanets = (props) => {
 
       // dropdown nations
       const dropddownNations = async() => {
-        const result = await axios ("http://localhost:5000/dropdownNations", {
+        const result = await axios ("https://cs340-spacecol-api.herokuapp.com/dropdownNations", {
           headers: { 'Content-Type': 'application/json'},
         })
         .then(result => setnationDropdown(result.data))

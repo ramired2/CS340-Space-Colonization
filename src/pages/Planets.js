@@ -35,7 +35,7 @@ const Planets = () => {
   }
 
   const allPlanets = async() => {
-    const result = await axios ("http://localhost:5000/allplanets", {
+    const result = await axios ("https://cs340-spacecol-api.herokuapp.com/allplanets", {
       headers: { 'Content-Type': 'application/json'},
     })
     .then(result => setdata(result.data))
