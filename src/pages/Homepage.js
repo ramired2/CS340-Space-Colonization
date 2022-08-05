@@ -1,7 +1,25 @@
-import React from 'react';
+import React, {useState, useRef, useEffect} from 'react';
+import axios from 'axios';
 
-const Homepage = ({
-}) => {
+const Homepage = () => {
+
+  const [data, setdata] = useState([]);
+
+  useEffect(() => {
+    allPlanets()
+    
+  }, []);
+
+  const allPlanets = async() => {
+    const result = await axios ("https://cs340-spacecol-api.herokuapp.com/dropdownNations", {
+      headers: { 'Content-Type': 'application/json'},
+    })
+    .then(result => setdata(result.data))
+    .catch(err => console.log(err));
+
+    console.log(data)
+  }
+
   return(
   <div className="centerDiv">
     <div className="content">
@@ -10,9 +28,9 @@ const Homepage = ({
       <div>
          <h4 className='subsubtopic'>Nations participating in the Space Colonization of xx34</h4>
         <ul>
-          <li className='centerIt text'>Canada</li>
-          <li className='centerIt text'>Guatemala</li>
-          <li className='centerIt text'>Mexico</li>
+          {data.map((item, idx) => (
+              <li key={idx} className='centerIt text'>{item.nationName}</li>
+              ))}
         </ul>
       </div>
      

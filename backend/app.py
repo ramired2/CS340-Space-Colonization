@@ -325,6 +325,7 @@ def dropdownPlanets():
     cnx.close()
     return json.dumps(json_data)
 
+@cross_origin(supports_credentials=True)
 # get uncolonized planets
 @app.route('/uncolonizedPlanets', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def uncolonizedPlanets():
@@ -333,7 +334,7 @@ def uncolonizedPlanets():
     cursor = dbInfo[1]
     cnx = dbInfo[0]
 
-    cursor.execute('SELECT Planets.planetID, Planets.planetName, Nations.nationName, StarSystems.systemName, Planets.colonized FROM Nations INNER JOIN Planets ON Nations.nationID = Planets.nationID INNER JOIN StarSystems ON Planets.systemID = StarSystems.systemID WHERE colonized = 0 Order BY Planets.planetName ASC;')
+    cursor.execute('SELECT Planets.planetID, Planets.planetName, Nations.nationName, StarSystems.systemName, Planets.colonized FROM Planets LEFT JOIN Nations ON Planets.nationID = Nations.nationID LEFT JOIN StarSystems ON Planets.systemID = StarSystems.systemID WHERE colonized = 1 Order BY Planets.planetName ASC;')
 
     # put nations in list format
     row_headers = [x[0] for x in cursor.description]
